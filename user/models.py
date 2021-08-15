@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
+from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 
 from utils.utils import generate_key
@@ -48,6 +49,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     slug = AutoSlugField(populate_from='slug_name')
+    country = CountryField(blank_label="Select country", default="ke")
     image = models.ImageField(upload_to='user/profile/%Y/%m/', default="user/profile/default.jpg")
     gender = models.CharField(
         choices=GENDER_TYPES,

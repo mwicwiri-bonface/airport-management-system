@@ -1,0 +1,48 @@
+{% extends 'passenger/layouts/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Login{% endblock title %}
+{% block content %}
+    <!-- Contact Form Section Begin -->
+    <section class="contact-form-section spad">
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible show fade">
+                      <div class="alert-body">
+                        <button class="close" data-dismiss="alert">
+                          <span>&times;</span>
+                        </button>
+                        {{ message }}
+                      </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cf-content">
+                        <div class="cc-title">
+                            <h4>Login form</h4>
+                        </div>
+                        <form action="." class="cc-form" method="post">
+                            {% csrf_token %}
+                            {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+                                  <span class="text-danger">{{ error }}</span>
+                              {% endfor %}
+                            {% endif %}
+                            <div class="group-input">
+                                {% render_field form.username class+="form-control" placeholder="login" %}
+                                {% render_field form.password class+="form-control" placeholder="password" %}
+                            </div>
+                            <button type="submit" class="site-btn">Login</button>
+                        </form>
+                    </div>
+                    <div class="mt-5 text-muted text-center">
+                      Don't have an account? <a href="{% url 'passenger:sign_up' %}">Create One</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Form Section End -->
+{% endblock %}

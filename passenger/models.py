@@ -14,7 +14,7 @@ class Passenger(User):
 
 class PassengerProfile(Profile):
     user = models.OneToOneField(Passenger, on_delete=models.CASCADE)
-    dob = models.DateField(help_text="Date Of Birth")
+    dob = models.DateField(help_text="Date Of Birth", null=True)
 
     class Meta:
         verbose_name = 'Passenger Profile'

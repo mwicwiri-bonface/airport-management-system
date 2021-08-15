@@ -10,15 +10,15 @@
                                                                        alt="" style="height: 65px;"></a>
                         </div>
                     </div>
-                    <div class="col-lg-10">
-                        <div class="ht-widget">
-                            <ul>
-                                <li><i class="icon_mail_alt"></i> passenger.support@gmail.com</li>
-                                <li><i class="fa fa-mobile-phone"></i> 125-711-811 <span>125-668-886</span></li>
-                            </ul>
-                            <a href="#" class="hw-btn">Submit property</a>
-                        </div>
-                    </div>
+<!--                    <div class="col-lg-10">-->
+<!--                        <div class="ht-widget">-->
+<!--&lt;!&ndash;                            <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <li><i class="icon_mail_alt"></i> passenger.support@gmail.com</li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <li><i class="fa fa-mobile-phone"></i> 125-711-811 <span>125-668-886</span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </ul>&ndash;&gt;-->
+<!--                            <a href="#" class="hw-btn">Login/Register</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
                 <div class="canvas-open">
                     <span class="icon_menu"></span>
@@ -32,19 +32,16 @@
                         <nav class="nav-menu">
                             <ul>
                                 <li class="active"><a href="{% url 'passenger:index' %}">Home</a></li>
-                                <li><a href="#">Properties</a>
-                                    <ul class="dropdown">
-                                        <li><a href="{% url 'passenger:property' %}">Property Grid</a></li>
-                                        <li><a href="{% url 'passenger:profile' %}">Property List</a></li>
-                                        <li><a href="{% url 'passenger:property-details' %}">Property Detail</a></li>
-                                        <li><a href="{% url 'passenger:property-comparison' %}">Property Comperison</a></li>
-                                        <li><a href="{% url 'passenger:property-submit' %}">Property Submit</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="{% url 'passenger:agents' %}">Agents</a></li>
-                                <li><a href="{% url 'passenger:about' %}">About</a></li>
-                                <li><a href="{% url 'passenger:blog' %}">Blog</a></li>
-                                <li><a href="{% url 'passenger:contact' %}">Contact</a></li>
+                                <li><a href="#">Flights</a></li>
+                                {% if request.user.is_authenticated and request.user.is_passenger %}
+                                    <li><a href="#" class="hw-btn">bookings</a></li>
+                                    <li><a href="#" class="hw-btn">payments</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'passenger:agents' %}">Finance</a></li>
+                                    <li><a href="{% url 'passenger:about' %}">pilot</a></li>
+                                    <li><a href="{% url 'passenger:blog' %}">staff</a></li>
+                                    <li><a href="{% url 'passenger:contact' %}">security</a></li>
+                                {% endif %}
                             </ul>
                         </nav>
                     </div>

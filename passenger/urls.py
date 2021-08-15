@@ -1,9 +1,14 @@
 from django.urls import path
 
 from .views import IndexView, AboutView, AgentsView, BlogView, BlogDetailsView, ContactView, ProfileView, \
-    PropertyView, PropertyComparisonView, PropertyDetailsView, PropertySubmitView
+    PropertyView, PropertyComparisonView, PropertyDetailsView, PropertySubmitView, PassengerLoginView, \
+    PassengerSignUpView, VerifyEmail, log_out
 
 urlpatterns = [
+    path('logout/', log_out, name="logout"),
+    path('verify/<uidb64>/<token>/', VerifyEmail.as_view(), name='verify'),
+    path('sign-up/', PassengerSignUpView.as_view(), name="sign_up"),
+    path('login/', PassengerLoginView.as_view(), name="login"),
     path('property-submit/', PropertySubmitView.as_view(), name="property-submit"),
     path('property-details/', PropertyDetailsView.as_view(), name="property-details"),
     path('property-comparison/', PropertyComparisonView.as_view(), name="property-comparison"),

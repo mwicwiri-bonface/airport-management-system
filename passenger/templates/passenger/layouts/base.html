@@ -32,11 +32,15 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="om-widget">
-            <ul>
-                <li><i class="icon_mail_alt"></i> passenger.support@gmail.com</li>
-                <li><i class="fa fa-mobile-phone"></i> 125-711-811 <span>125-668-886</span></li>
-            </ul>
-            <a href="#" class="hw-btn">Submit property</a>
+<!--            <ul>-->
+<!--                <li><i class="icon_mail_alt"></i> passenger.support@gmail.com</li>-->
+<!--                <li><i class="fa fa-mobile-phone"></i> 125-711-811 <span>125-668-886</span></li>-->
+<!--            </ul>-->
+            {% if request.user.is_authenticated and request.user.is_passenger %}
+                <a href="{% url 'passenger:logout' %}" class="hw-btn">Logout</a>
+            {% else %}
+                <a href="{% url 'passenger:login' %}" class="hw-btn">Login/Register</a>
+            {% endif %}
         </div>
         <div class="om-social">
             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -50,7 +54,6 @@
 
     {% include 'passenger/includes/header.html' %}
     {% block content %}{% endblock %}
-    {% include 'passenger/includes/contact.html' %}
     {% include 'passenger/includes/footer.html' %}
     {% include 'passenger/includes/scripts.html' %}
 
