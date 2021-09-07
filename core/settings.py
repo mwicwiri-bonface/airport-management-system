@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     # apps
     'airport.apps.AirportConfig',
     'staff.apps.StaffConfig',
+    'flight_staff.apps.FlightStaffConfig',
     'finance.apps.FinanceConfig',
     'user.apps.UserConfig',
     'passenger.apps.PassengerConfig',
