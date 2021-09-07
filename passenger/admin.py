@@ -95,4 +95,3 @@ class PassengerFeedbackAdmin(admin.ModelAdmin):
 admin.site.register(Passenger, PassengerAdmin)
 admin.site.register(PassengerProfile, PassengerProfileAdmin)
 admin.site.register(PassengerFeedback, PassengerFeedbackAdmin)
-
