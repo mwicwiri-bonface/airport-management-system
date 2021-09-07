@@ -20,7 +20,7 @@ GENDER_TYPES = (
 class User(AbstractUser):
     slug = AutoSlugField(populate_from='slug_name')
     is_passenger = models.BooleanField(default=False, help_text="Means user can login to disposer's portal")
-    staff = models.BooleanField(default=False, help_text="Means user can login to collector's portal")
+    is_normal_staff = models.BooleanField(default=False, help_text="Means user can login to collector's portal")
     is_flight_staff = models.BooleanField(default=False, help_text="Means user can login to buyer portal")
     is_supervisor = models.BooleanField(default=False, help_text="Means user can login to supervisor portal")
     is_finance = models.BooleanField(default=False, help_text="Means user can login to finance portal")

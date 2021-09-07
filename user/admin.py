@@ -6,7 +6,7 @@ from .models import User, Profile, Feedback
 class UserAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'username')
     search_fields = ('first_name', 'last_name', 'email', 'username',)
-    list_filter = ('is_passenger', 'staff', 'is_flight_staff', 'is_finance')
+    list_filter = ('is_passenger', 'is_normal_staff', 'is_flight_staff', 'is_finance')
 
     actions = ['make_active', 'make_inactive']
 

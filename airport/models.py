@@ -12,6 +12,9 @@ class Place(models.Model):
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Route(models.Model):
     slug = AutoSlugField(populate_from='code')
@@ -20,6 +23,9 @@ class Route(models.Model):
     destination = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="destination")
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
+
+    def __str__(self):
+        return f"from {self.source.name} to {self.destination.name} :: {self.code}"
 
 
 class Check(models.Model):
@@ -34,6 +40,9 @@ class Airline(models.Model):
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Plane(models.Model):
     slug = AutoSlugField(populate_from='code')
@@ -42,6 +51,9 @@ class Plane(models.Model):
     airline = models.ForeignKey(Airline, on_delete=models.CASCADE)
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
+
+    def __str__(self):
+        return f"{self.airline.name} - {self.name} :: {self.code}"
 
 
 class Flight(models.Model):

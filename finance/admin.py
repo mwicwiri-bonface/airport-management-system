@@ -5,9 +5,9 @@ from .models import Finance, FinanceProfile, FinanceFeedback, Payment
 
 
 class FinanceAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'location', 'email', 'username')
-    search_fields = ('first_name', 'last_name', 'location', 'email', 'username',)
-    list_filter = ('location', 'is_active', 'is_archived', 'updated', 'created')
+    list_display = ('first_name', 'last_name', 'email', 'username')
+    search_fields = ('first_name', 'last_name', 'email', 'username',)
+    list_filter = ('is_active', 'is_archived', 'updated', 'created')
 
     actions = ['make_active', 'make_inactive']
 

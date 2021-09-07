@@ -4,3 +4,4 @@
 /flight_staff/migrations/
 /staff/migrations/
 /user/migrations/
+/db.sqlite3
