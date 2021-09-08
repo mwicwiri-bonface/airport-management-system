@@ -97,7 +97,7 @@ admin.sites.AdminSite.site_header = 'Airport admin header'
 admin.sites.AdminSite.site_title = 'Airport admin title'
 admin.sites.AdminSite.index_title = 'Airport admin index'
 admin.site.unregister(Group)
-# admin.site.unregister(Theme)
+admin.site.unregister(Theme)
 admin.site.register(Attendant, AttendantAdmin)
 admin.site.register(AttendantProfile, AttendantProfileAdmin)
 admin.site.register(AttendantFeedback, AttendantFeedbackAdmin)
