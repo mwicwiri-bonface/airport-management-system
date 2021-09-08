@@ -1,10 +1,10 @@
 from django.contrib import admin, messages
 from django.utils.translation import ngettext
 
-from .models import FlightStaff, FlightStaffProfile, FlightStaffFeedback
+from .models import Security, SecurityProfile, SecurityFeedback
 
 
-class FlightStaffAdmin(admin.ModelAdmin):
+class SecurityAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'username')
     search_fields = ('first_name', 'last_name', 'email', 'username',)
     list_filter = ('is_active', 'is_archived', 'updated', 'created')
@@ -14,22 +14,22 @@ class FlightStaffAdmin(admin.ModelAdmin):
     def make_active(self, request, queryset):
         updated = queryset.update(is_active=True, is_archived=False)
         self.message_user(request, ngettext(
-            '%d FlightStaff has successfully been marked as active.',
-            '%d FlightStaffs have been successfully marked as active.',
+            '%d Security has successfully been marked as active.',
+            '%d Securitys have been successfully marked as active.',
             updated,
         ) % updated, messages.SUCCESS)
 
-    make_active.short_description = "Approve FlightStaff"
+    make_active.short_description = "Approve Security"
 
     def make_inactive(self, request, queryset):
         updated = queryset.update(is_archived=True)
         self.message_user(request, ngettext(
-            '%d FlightStaff has been archived successfully.',
-            '%d FlightStaffs have been archived successfully.',
+            '%d Security has been archived successfully.',
+            '%d Securitys have been archived successfully.',
             updated,
         ) % updated, messages.INFO)
 
-    make_inactive.short_description = "Archive FlightStaff"
+    make_inactive.short_description = "Archive Security"
 
     def has_delete_permission(self, request, obj=None):
         return True
@@ -41,8 +41,8 @@ class FlightStaffAdmin(admin.ModelAdmin):
         return True
 
 
-class FlightStaffProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone_number', 'image', 'gender', 'dob', 'is_active', 'created', 'updated')
+class SecurityProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'phone_number', 'image', 'gender', 'is_active', 'created', 'updated')
     list_filter = ('gender', 'is_active', 'updated', 'created')
     search_fields = ('phone_number',)
     actions = ['make_active', 'make_inactive']
@@ -77,7 +77,7 @@ class FlightStaffProfileAdmin(admin.ModelAdmin):
         return True
 
 
-class FlightStaffFeedbackAdmin(admin.ModelAdmin):
+class SecurityFeedbackAdmin(admin.ModelAdmin):
     list_display = ('subject', 'message', 'created')
     list_filter = ('created',)
     search_fields = ('subject', 'message',)
@@ -92,8 +92,9 @@ class FlightStaffFeedbackAdmin(admin.ModelAdmin):
         return True
 
 
-admin.site.register(FlightStaff, FlightStaffAdmin)
-admin.site.register(FlightStaffProfile, FlightStaffProfileAdmin)
-admin.site.register(FlightStaffFeedback, FlightStaffFeedbackAdmin)
+admin.site.register(Security, SecurityAdmin)
+admin.site.register(SecurityProfile, SecurityProfileAdmin)
+admin.site.register(SecurityFeedback, SecurityFeedbackAdmin)
+
 
 

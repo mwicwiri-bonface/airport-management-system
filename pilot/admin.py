@@ -1,34 +1,35 @@
 from django.contrib import admin, messages
 from django.utils.translation import ngettext
-from .models import User, Profile, Feedback
+
+from .models import Pilot, PilotProfile, PilotFeedback
 
 
-class UserAdmin(admin.ModelAdmin):
+class PilotAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'username')
     search_fields = ('first_name', 'last_name', 'email', 'username',)
-    list_filter = ('is_passenger', 'is_security', 'is_pilot', 'is_attendant', 'is_maintenance', 'is_finance')
+    list_filter = ('is_active', 'is_archived', 'updated', 'created')
 
     actions = ['make_active', 'make_inactive']
 
     def make_active(self, request, queryset):
-        updated = queryset.update(is_active=True, is_archived=False, is_approved=True)
+        updated = queryset.update(is_active=True, is_archived=False)
         self.message_user(request, ngettext(
-            '%d User has successfully been marked as active.',
-            '%d Users have been successfully marked as active.',
+            '%d Pilot has successfully been marked as active.',
+            '%d Pilots have been successfully marked as active.',
             updated,
         ) % updated, messages.SUCCESS)
 
-    make_active.short_description = "Approve User"
+    make_active.short_description = "Approve Pilot"
 
     def make_inactive(self, request, queryset):
         updated = queryset.update(is_archived=True)
         self.message_user(request, ngettext(
-            '%d User has been archived successfully.',
-            '%d Users have been archived successfully.',
+            '%d Pilot has been archived successfully.',
+            '%d Pilots have been archived successfully.',
             updated,
         ) % updated, messages.INFO)
 
-    make_inactive.short_description = "Archive User"
+    make_inactive.short_description = "Archive Pilot"
 
     def has_delete_permission(self, request, obj=None):
         return True
@@ -40,8 +41,8 @@ class UserAdmin(admin.ModelAdmin):
         return True
 
 
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('phone_number', 'image', 'gender', 'is_active', 'created', 'updated')
+class PilotProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'phone_number', 'image', 'gender', 'is_active', 'created', 'updated')
     list_filter = ('gender', 'is_active', 'updated', 'created')
     search_fields = ('phone_number',)
     actions = ['make_active', 'make_inactive']
@@ -76,7 +77,7 @@ class ProfileAdmin(admin.ModelAdmin):
         return True
 
 
-class FeedbackAdmin(admin.ModelAdmin):
+class PilotFeedbackAdmin(admin.ModelAdmin):
     list_display = ('subject', 'message', 'created')
     list_filter = ('created',)
     search_fields = ('subject', 'message',)
@@ -91,6 +92,8 @@ class FeedbackAdmin(admin.ModelAdmin):
         return True
 
 
-admin.site.register(User, UserAdmin)
-admin.site.register(Profile, ProfileAdmin)
-admin.site.register(Feedback, FeedbackAdmin)
+admin.site.register(Pilot, PilotAdmin)
+admin.site.register(PilotProfile, PilotProfileAdmin)
+admin.site.register(PilotFeedback, PilotFeedbackAdmin)
+
+

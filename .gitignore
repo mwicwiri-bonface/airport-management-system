@@ -1,7 +1,9 @@
 /passenger/migrations/
 /airport/migrations/
 /finance/migrations/
-/flight_staff/migrations/
-/staff/migrations/
 /user/migrations/
 /db.sqlite3
+/maintenance/migrations/
+/attendant/migrations/
+/pilot/migrations/
+/security/migrations/
