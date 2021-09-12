@@ -4,6 +4,7 @@ from djmoney.models.fields import MoneyField
 from django.utils.translation import gettext_lazy as _
 
 from passenger.models import Passenger
+from security.models import Security
 
 
 class Place(models.Model):
@@ -26,12 +27,6 @@ class Route(models.Model):
 
     def __str__(self):
         return f"from {self.source.name} to {self.destination.name} :: {self.code}"
-
-
-class Check(models.Model):
-    status = models.BooleanField(default=0)
-    created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
-    updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
 
 
 class Airline(models.Model):
@@ -74,5 +69,13 @@ class Booking(models.Model):
     code = models.CharField(max_length=20)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
     passenger = models.ForeignKey(Passenger, on_delete=models.CASCADE, null=True)
+    created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
+    updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
+
+
+class Check(models.Model):
+    status = models.BooleanField(default=0)
+    security = models.ForeignKey(Security, on_delete=models.CASCADE, null=True)
+    ticket = models.ForeignKey(Booking, on_delete=models.CASCADE, null=True)
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
