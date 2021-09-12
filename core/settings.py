@@ -30,9 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps
     'airport.apps.AirportConfig',
-    'attendant.apps.AttendantConfig',
     'security.apps.SecurityConfig',
-    'pilot.apps.PilotConfig',
+    'flight_staff.apps.FlightStaffConfig',
     'maintenance.apps.MaintenanceConfig',
     'finance.apps.FinanceConfig',
     'user.apps.UserConfig',
