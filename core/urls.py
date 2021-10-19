@@ -20,6 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('finance/', include(('finance.urls', 'finance'), namespace="finance")),
     path('', include(('passenger.urls', 'passenger'), namespace="passenger")),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,30 +1,13 @@
-﻿<!doctype html>
-<html class="no-js " lang="en">
-
-
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
-
-<title>:: finance Bootstrap4 Admin :: Sign Up</title>
-<!-- Favicon-->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<!-- Custom Css -->
-<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/style.min.css">
-</head>
-
-<body class="theme-blush">
-
-<div class="authentication">    
+﻿{% extends 'finance/auth/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-sm-12">
                 <form class="card auth_form">
                     <div class="header">
-                        <img class="logo" src="assets/images/logo.svg" alt="">
+                        <img class="logo" src="{% static 'finance/assets/images/logo.svg' %}" alt="">
                         <h5>Sign Up</h5>
                         <span>Register a new membership</span>
                     </div>
@@ -65,18 +48,9 @@
             </div>
             <div class="col-lg-8 col-sm-12">
                 <div class="card">
-                    <img src="assets/images/signup.svg" alt="Sign Up" />
+                    <img src="{% static 'finance/assets/images/signup.svg' %}" alt="Sign Up" />
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-<!-- Jquery Core Js -->
-<script src="assets/bundles/libscripts.bundle.js"></script>
-<script src="assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
-</body>
-
-
-</html>
+{% endblock %}
