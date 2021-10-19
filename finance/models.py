@@ -47,9 +47,3 @@ class Payment(models.Model):
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
 
 
-@receiver(post_save, sender=Finance)
-def finance_profile(sender, instance, created, **kwargs):
-    if created:
-        FinanceProfile.objects.create(user=instance)
-        instance.financeprofile.save()
-
