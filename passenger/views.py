@@ -13,6 +13,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views import View
 from django.views.generic import CreateView
 
+from airport.models import Place
 from passenger.forms import PassengerForm, PassengerProfileForm, PassengerSignUpForm, PassengerAuthenticationForm
 from passenger.models import Passenger
 from user.decorators import passenger_required
@@ -142,7 +143,8 @@ class IndexView(View):
     template_name = "passenger/index.html"
 
     def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+        place = Place.objects.all()
+        return render(self.request, self.template_name, {'place': place})
 
     def post(self, *args, **kwargs):
         pass
