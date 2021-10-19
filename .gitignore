@@ -8,3 +8,4 @@
 /pilot/migrations/
 /security/migrations/
 /core/settings.ini
+/security/__pycache__/*
