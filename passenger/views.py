@@ -143,9 +143,8 @@ class IndexView(View):
     template_name = "passenger/index.html"
 
     def get(self, *args, **kwargs):
-        to_place = Place.objects.all()
-        from_place = Place.objects.all()
-        return render(self.request, self.template_name, {'to_place': to_place, 'from_place': from_place})
+        place = Place.objects.all()
+        return render(self.request, self.template_name, {'place': place})
 
     def post(self, *args, **kwargs):
         pass

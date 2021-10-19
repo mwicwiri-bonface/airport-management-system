@@ -66,13 +66,13 @@
                 <form action="#" class="filter-form" method="get">
                     <select class="sm-width" name="from">
                         <option value="" selected disabled>From</option>
-                        {% for object in from_place %}
+                        {% for object in place %}
                             <option value="{{object.id}}">{{object.name}}</option>
                         {% endfor %}
                     </select>
                     <select class="sm-width" name="to">
                         <option value="" selected disabled>to</option>
-                        {% for object in to_place %}
+                        {% for object in place %}
                             <option value="{{object.id}}">{{object.name}}</option>
                         {% endfor %}
                     </select>
