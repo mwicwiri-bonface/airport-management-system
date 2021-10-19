@@ -1,0 +1,38 @@
+<!doctype html>
+<html class="no-js " lang="en">
+
+{% load static %}
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+<title>:: {% block title %}{% endblock title %} :: Home</title>
+{% include 'finance/include/styles.html' %}
+</head>
+
+<body class="theme-blush">
+{% include 'finance/include/preloader.html' %}
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<!-- Main Search -->
+<!--<div id="search">-->
+<!--    <button id="close" type="button" class="close btn btn-primary btn-icon btn-icon-mini btn-round">x</button>-->
+<!--    <form>-->
+<!--      <input type="search" value="" placeholder="Search..." />-->
+<!--      <button type="submit" class="btn btn-primary">Search</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--finance/include/right-navbar.html-->
+{% include 'finance/include/left-sidebar.html' %}
+<!--finance/include/right-sidebar.html-->
+
+<!-- Main Content -->
+{% block content %}{% endblock %}
+{% include 'finance/include/scripts.html' %}
+</body>
+
+
+</html>
