@@ -554,7 +554,7 @@ ol {
   margin-left: -4px;
   cursor: pointer;
   border: 1px solid #00C89E;
-  color: #fff;
+  color: #222;
 }
 .change-btn .cb-item label.active {
   background: #00C89E;

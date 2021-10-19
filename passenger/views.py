@@ -72,7 +72,9 @@ class PassengerSignUpView(CreateView):
 
 class VerifyEmail(View):
 
-    def get(self, request, uidb64, token, *args, **kwargs):
+    def get(self, *args, **kwargs):
+        uidb64 = kwargs['uidb64']
+        token = kwargs['token']
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
             user = Passenger.objects.get(pk=uid)
@@ -81,11 +83,11 @@ class VerifyEmail(View):
 
         if user is not None and account_activation_token.check_token(user, token):
             if user.is_verified:
-                messages.info(request, "you've already confirmed your email.")
+                messages.info(self.request, "you've already confirmed your email.")
             elif not user.is_verified:
                 user.is_verified = True
                 user.save()
-                messages.info(request, "You've successfully verified your email. use your email to login")
+                messages.info(self.request, "You've successfully verified your email. use your email to login")
             return redirect('passenger:login')
         else:
             data = {
