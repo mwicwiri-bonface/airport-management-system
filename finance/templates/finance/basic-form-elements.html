@@ -1,6 +1,15 @@
-﻿{% extends 'finance/layouts/base.html' %}
+﻿{% extends 'layouts/base.html' %}
 {% load static %}
 {% block title %} Basic Form {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+<!-- Bootstrap Material Datetime Picker Css -->
+<link href="{% static 'assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+<!-- Bootstrap Select Css -->
+<link href="{% static 'assets/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+<!-- Custom Css -->
+<link  rel="stylesheet" href="{% static 'assets/css/style.min.css' %}">
+{% endblock %}
 {% block content %}
 <section class="content">
     <div class="body_scroll">
@@ -243,4 +252,16 @@
     </div>
 </section>
 
+{% endblock %}
+{% block scripts %}
+<!-- Jquery Core Js -->
+<script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+
+<script src="{% static 'assets/plugins/momentjs/moment.js' %}"></script> <!-- Moment Plugin Js -->
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="{% static 'assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
+
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script><!-- Custom Js -->
+<script src="{% static 'assets/js/pages/forms/basic-form-elements.js' %}"></script>
 {% endblock %}

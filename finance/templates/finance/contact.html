@@ -1,6 +1,13 @@
 ﻿{% extends 'finance/layouts/base.html' %}
 {% load static %}
 {% block title %} Contact {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/plugins/footable-bootstrap/css/footable.bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/plugins/footable-bootstrap/css/footable.standalone.min.css' %}">
+<!-- Custom Css -->
+<link rel="stylesheet" href="{% static 'assets/css/style.min.css' %}">
+{% endblock %}
 {% block content %}
 <section class="content contact">
     <div class="body_scroll">
@@ -247,4 +254,14 @@
         </div>
     </div>
 </section>
+{% endblock %}
+{% block scripts %}
+<!-- Jquery Core Js -->
+<script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script>
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script>
+
+<script src="{% static 'assets/bundles/footable.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
+<script src="{% static 'assets/js/pages/tables/footable.js' %}"></script><!-- Custom Js -->
 {% endblock %}

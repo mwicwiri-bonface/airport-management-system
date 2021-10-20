@@ -8,7 +8,7 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="description" content="{% block description %} {% endblock %}">
 <title>:: {% block title %}{% endblock %} :: Home</title>
-{% include 'finance/include/styles.html' %}
+    {% block styles %} {% endblock %}
 </head>
 
 <body class="theme-blush">
@@ -20,7 +20,7 @@
 
 <!-- Main Content -->
 {% block content %}{% endblock %}
-{% include 'finance/include/scripts.html' %}
+{% block scripts %}{% endblock %}
 </body>
 
 </html>
