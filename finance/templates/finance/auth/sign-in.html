@@ -7,7 +7,7 @@
             <div class="col-lg-4 col-sm-12">
                 <form class="card auth_form">
                     <div class="header">
-                        <img class="logo" src="{% static 'finance/assets/images/logo.svg' %}" alt="">
+                        <img class="logo" src="{% static 'assets/images/logo.svg' %}" alt="">
                         <h5>Log in</h5>
                     </div>
                     <div class="body">
@@ -37,14 +37,13 @@
                     </div>
                 </form>
                 <div class="copyright text-center">
-                    &copy;
-                    <script>document.write(new Date().getFullYear())</script>,
-                    <span><a href="templatespoint.net">Templates Point</a></span>
+                    &copy;{% now "Y" %},
+                    <span><a href="#">Airport Kenya</a></span>
                 </div>
             </div>
             <div class="col-lg-8 col-sm-12">
                 <div class="card">
-                    <img src="{% static 'finance/assets/images/signin.svg' %}" alt="Sign In"/>
+                    <img src="{% static 'assets/images/signin.svg' %}" alt="Sign In"/>
                 </div>
             </div>
         </div>
