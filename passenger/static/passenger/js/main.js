@@ -1,6 +1,6 @@
 /*  ---------------------------------------------------
-    Template Name: passenger
-    Description:  passenger property HTML Template
+    Template Name: Aler
+    Description:  Aler property HTML Template
     Author: Colorlib
     Author URI: https://colorlib.com
     Version: 1.0
