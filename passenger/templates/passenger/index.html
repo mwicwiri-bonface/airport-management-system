@@ -12,11 +12,12 @@
 						<p>Explore top-rated flights around kenya</p>
 					</div>
 
-					<form>
+					<form method="POST" action="{% url 'passenger:flights' %}">
+						{% csrf_token %}
 						<fieldset class="home-form-1">
 							<div class="col-md-5 col-sm-5 padd-0">
 								<div class="sl-box">
-									<select class="wide form-control br-1">
+									<select class="wide form-control br-1" name="city_from">
 										<option data-display="Departure city">Departure city</option>
 										{% for object in place %}
 											<option value="{{object.id}}">{{object.name}}</option>
@@ -28,7 +29,7 @@
 
 							<div class="col-md-5 col-sm-5 padd-0">
 								<div class="sl-box">
-									<select class="wide form-control br-1">
+									<select class="wide form-control br-1" name="city_to">
 										<option data-display="Destination city">Destination city</option>
 										{% for object in place %}
 											<option value="{{object.id}}">{{object.name}}</option>

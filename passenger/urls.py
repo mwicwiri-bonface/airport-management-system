@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import IndexView, AboutView, ContactView, ProfileView, PassengerLoginView, \
-    PassengerSignUpView, VerifyEmail, log_out, error, payment_method, booking, faq, flights, change_password, \
+    PassengerSignUpView, VerifyEmail, log_out, error, payment_method, booking, faq, FlightsListView, change_password, \
     success_page, receipts
 
 urlpatterns = [
@@ -16,7 +16,7 @@ urlpatterns = [
     path('payment_method/', payment_method, name="payment_method"),
     path('booking/', booking, name="booking"),
     path('faq/', faq, name="faq"),
-    path('flights/', flights, name="flights"),
+    path('flights/', FlightsListView.as_view(), name="flights"),
     path('change_password/', change_password, name="change_password"),
     path('success_page/', success_page, name="success_page"),
     path('receipts/', receipts, name="receipts"),

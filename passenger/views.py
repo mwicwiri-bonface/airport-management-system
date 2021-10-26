@@ -8,10 +8,11 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 from airport.models import Place, Flight
 from passenger.forms import PassengerForm, PassengerProfileForm, PassengerSignUpForm, PassengerAuthenticationForm
@@ -200,8 +201,20 @@ def contact(request):
     return render(request, 'passenger/contact.html')
 
 
-def flights(request):
-    return render(request, 'passenger/flights.html')
+class FlightsListView(ListView):
+    template_name = "passenger/flights.html"
+    model = Flight
+    paginate_by = 5
+
+    def get_queryset(self):
+        object_list = Flight.objects.filter(departure__lte=timezone.now())
+        return object_list
+
+    def post(self):
+        city_from = self.request.POST.get('city_from')
+        city_to = self.request.POST.get('city_to')
+        object_list = self.object_list.filter(route__source=city_from, route__destination=city_to)
+        return render(self.request, self.template_name, {'object_list': object_list})
 
 
 def index(request):
