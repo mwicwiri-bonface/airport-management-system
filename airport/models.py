@@ -1,8 +1,7 @@
 from autoslug import AutoSlugField
 from django.db import models
-from djmoney.models.fields import MoneyField
 from django.utils.translation import gettext_lazy as _
-
+from djmoney.models.fields import MoneyField
 from passenger.models import Passenger
 from security.models import Security
 
@@ -49,6 +48,12 @@ class Plane(models.Model):
 
     def __str__(self):
         return f"{self.airline.name} - {self.name} :: {self.code}"
+
+    @property
+    def pilot(self):
+        staff_profile = self.flightstaffprofile_set.filter(user__is_pilot=True, user__is_archived=False,
+                                                           user__is_verified=True, user__is_active=True).first()
+        return staff_profile
 
 
 class Flight(models.Model):

@@ -121,7 +121,7 @@
 				<div class="row">
 
 					<div class="list-slider">
-
+						{% for object in flights %}
 						<!-- Single Tour -->
 						<div class="list-slide-box">
 							<article class="tour-box style-1">
@@ -136,11 +136,11 @@
 										<div class="entry-bookmark">
 											<a href="#"><i class="ti-bookmark"></i></a>
 										</div>
-										<div class="tour-time">
-											<i class="ti ti-car"></i><span>25h</span>
-										</div>
+<!--										<div class="tour-time">-->
+<!--											<i class="ti ti-car"></i><span>25h</span>-->
+<!--										</div>-->
 										<h4 class="tour-place">
-											<a href="tour-detail.html">from mombasa to, Nairobi</a>
+											<a href="tour-detail.html">from {{object.route.source}} to, {{object.route.destination}}</a>
 										</h4>
 										<span class="featured-tour"><i class="fa fa-star"></i></span>
 										<a href="#" class="list-like left"><i class="ti-heart"></i></a>
@@ -152,21 +152,11 @@
 										<div class="coauthors">
 											<span class="vcard author">
 												<span class="fn">
-													<a href="#"><img alt="" src="{% static 'passenger/assets/img/user-1.jpg' %}" class="avatar avatar-24" height="24" width="24">Lisa Scholfield</a>
+													<a href="#"><img alt="" src="{{object.plane.pilot.image.url}}" class="avatar avatar-24" height="24" width="24">{{object.plane.pilot.user.get_full_name}}</a>
 												</span>
 											</span>
 										</div>
 									</div>
-<!--									<div class="meta-item meta-comment fl-right">-->
-<!--										<i class="ti-comment-alt"></i><span>25</span>-->
-<!--									</div>-->
-<!--									<div class="meta-item meta-rating fl-right">-->
-<!--										<i class="fa fa-star"></i>-->
-<!--										<i class="fa fa-star"></i>-->
-<!--										<i class="fa fa-star"></i>-->
-<!--										<i class="fa fa-star"></i>-->
-<!--										<i class="fa fa-star-half"></i>-->
-<!--									</div>-->
 								</div>
 
 								<div class="inner-box">
@@ -176,7 +166,7 @@
 										</h4>
 										<div class="price-box">
 											<div class="tour-price fl-right">
-												<i class="ti ti-user"></i><span class="theme-cl f-bold">$187</span>
+												<i class="ti ti-user"></i><span class="theme-cl f-bold">{{object.price}}</span>
 											</div>
 										</div>
 									</div>
@@ -184,7 +174,7 @@
 
 							</article>
 						</div>
-
+						{% endfor %}
 					</div>
 				</div>
 
