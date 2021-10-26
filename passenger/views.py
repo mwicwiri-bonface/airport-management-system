@@ -213,7 +213,11 @@ class FlightsListView(ListView):
     def post(self, *args, **kwargs):
         city_from = self.request.POST.get('city_from')
         city_to = self.request.POST.get('city_to')
-        object_list = self.object_list.filter(route__source=city_from, route__destination=city_to)
+        if city_from == city_to:
+            messages.info(self.request, f"sorry you can't move from {city_from} to {city_to}")
+            return redirect('passenger:index')
+        else:
+            object_list = self.object_list.filter(route__source=city_from, route__destination=city_to)
         return render(self.request, self.template_name, {'object_list': object_list})
 
 
