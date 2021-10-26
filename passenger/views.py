@@ -207,7 +207,7 @@ class FlightsListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        object_list = Flight.objects.filter(departure__lte=timezone.now())
+        object_list = Flight.objects.filter(departure__gte=timezone.now())
         return object_list
 
     def post(self, *args, **kwargs):
