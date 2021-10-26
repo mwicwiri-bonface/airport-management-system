@@ -18,10 +18,9 @@
 								<div class="sl-box">
 									<select class="wide form-control br-1">
 										<option data-display="Departure city">Departure city</option>
-										<option value="1">01</option>
-										<option value="2">02</option>
-										<option value="3">03</option>
-										<option value="4">04</option>
+										{% for object in place %}
+											<option value="{{object.id}}">{{object.name}}</option>
+										{% endfor %}
 									</select>
 								</div>
 							</div>
@@ -30,10 +29,9 @@
 								<div class="sl-box">
 									<select class="wide form-control br-1">
 										<option data-display="Destination city">Destination city</option>
-										<option value="1">01</option>
-										<option value="2">02</option>
-										<option value="3">03</option>
-										<option value="4">04</option>
+										{% for object in place %}
+											<option value="{{object.id}}">{{object.name}}</option>
+										{% endfor %}
 									</select>
 								</div>
 							</div>
