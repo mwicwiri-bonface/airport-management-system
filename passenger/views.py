@@ -121,7 +121,6 @@ def profile(request):
     return render(request, 'passenger/my-profile.html', context)
 
 
-@passenger_required
 def faq(request):  # Not Done
     context = {}
     return render(request, 'passenger/faq.html', context)
@@ -263,20 +262,12 @@ def payment_method(request):
     return render(request, 'passenger/payment-method.html')
 
 
-def profile(request):
-    return render(request, 'passenger/my-profile.html')
-
-
 def booking(request):
-    return render(request, 'passenger/booking-2.html')
+    return render(request, 'passenger/booking.html')
 
 
 def contact(request):
     return render(request, 'passenger/contact.html')
-
-
-def faq(request):
-    return render(request, 'passenger/faq.html')
 
 
 def flights(request):
@@ -287,20 +278,12 @@ def index(request):
     return render(request, 'passenger/index.html')
 
 
-def login(request):
-    return render(request, 'passenger/login.html')
-
-
 def signup(request):
     return render(request, 'passenger/signup.html')
 
 
 def success_page(request):
     return render(request, 'passenger/success-page.html')
-
-
-def change_password(request):
-    return render(request, 'passenger/change-password.html')
 
 
 def receipts(request):
