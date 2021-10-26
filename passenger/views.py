@@ -217,7 +217,7 @@ class FlightsListView(ListView):
             messages.info(self.request, f"sorry you can't move from {city_from} to {city_to}")
             return redirect('passenger:index')
         else:
-            object_list = self.object_list.filter(route__source=city_from, route__destination=city_to)
+            object_list = self.get_queryset().filter(route__source=city_from, route__destination=city_to)
         return render(self.request, self.template_name, {'object_list': object_list})
 
 
