@@ -210,7 +210,7 @@ class FlightsListView(ListView):
         object_list = Flight.objects.filter(departure__lte=timezone.now())
         return object_list
 
-    def post(self):
+    def post(self, *args, **kwargs):
         city_from = self.request.POST.get('city_from')
         city_to = self.request.POST.get('city_to')
         object_list = self.object_list.filter(route__source=city_from, route__destination=city_to)
