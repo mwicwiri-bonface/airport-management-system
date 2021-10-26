@@ -1,62 +1,92 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="description" content="passenger Template">
-    <meta name="keywords" content="passenger, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}{% endblock title %}</title>
-    {% include "passenger/includes/styles.html" %}
 
-</head>
+    <title>{% block title %}{% endblock %}</title>
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+    <!-- Plugins CSS -->
+	<link rel="stylesheet" href="{% static 'passenger/assets/plugins/css/plugins.css' %}">
 
-    <!-- Offcanvas Menu Wrapper Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="canvas-close">
-            <span class="icon_close"></span>
-        </div>
-        <div class="logo">
-            <a href="{% url 'passenger:index' %}">
-                <img src="{% static 'passenger/img/airkenya-logo.png' %}" alt="" style="height: 65px;">
-            </a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="om-widget">
-<!--            <ul>-->
-<!--                <li><i class="icon_mail_alt"></i> passenger.support@gmail.com</li>-->
-<!--                <li><i class="fa fa-mobile-phone"></i> 125-711-811 <span>125-668-886</span></li>-->
-<!--            </ul>-->
-            {% if request.user.is_authenticated and request.user.is_passenger %}
-                <a href="{% url 'passenger:logout' %}" class="hw-btn">Logout</a>
-            {% else %}
-                <a href="{% url 'passenger:login' %}" class="hw-btn">Login/Register</a>
-            {% endif %}
-        </div>
-        <div class="om-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-    </div>
-    <!-- Offcanvas Menu Wrapper End -->
+    <!-- Custom style -->
+    <link href="{% static 'passenger/assets/css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'passenger/assets/css/responsiveness.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'passenger/assets/css/skins/default.css' %}">
 
-    {% include 'passenger/includes/header.html' %}
-    {% block content %}{% endblock %}
-    {% include 'passenger/includes/footer.html' %}
-    {% include 'passenger/includes/scripts.html' %}
+	</head>
 
-</body>
+	<body>
+		{% include 'passenger/include/navbar.html' %}
+		{% block content %}{% endblock %}
+		{% include 'passenger/include/before-footer.html' %}
+		{% include 'passenger/include/footer.html' %}
+		{% include 'passenger/include/accounts.html' %}
+		{% include 'passenger/include/switcher.html' %}
+
+		<!-- =================== START JAVASCRIPT ================== -->
+		<script src="{% static 'passenger/assets/plugins/js/jquery.min.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/viewportchecker.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/bootsnav.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/slick.min.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/jquery.nice-select.min.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/jquery.fancybox.min.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/jquery.downCount.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/freshslider.1.0.0.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/moment.min.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/daterangepicker.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/wysihtml5-0.3.0.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/bootstrap-wysihtml5.js' %}"></script>
+
+		<!-- Dashboard Js -->
+		<script src="{% static 'passenger/assets/plugins/js/jquery.slimscroll.min.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/jquery.metisMenu.js' %}"></script>
+		<script src="{% static 'passenger/assets/plugins/js/jquery.easing.min.js' %}"></script>
+
+		<!-- Custom Js -->
+		<script src="{% static 'passenger/assets/js/custom.js' %}"></script>
+
+		<script>
+			$(function() {
+
+			  $('input[name="book-date"]').daterangepicker({
+				  autoUpdateInput: false,
+				  locale: {
+					  cancelLabel: 'Clear'
+				  }
+			  });
+
+			  $('input[name="book-date"]').on('apply.daterangepicker', function(ev, picker) {
+				  $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+			  });
+
+			  $('input[name="book-date"]').on('cancel.daterangepicker', function(ev, picker) {
+				  $(this).val('');
+			  });
+
+			});
+		</script>
+
+		<script src="{% static 'passenger/assets/js/jQuery.style.switcher.js' %}"></script>
+		<script>
+			function openRightMenu() {
+				document.getElementById("rightMenu").style.display = "block";
+			}
+			function closeRightMenu() {
+				document.getElementById("rightMenu").style.display = "none";
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#styleOptions').styleSwitcher();
+			});
+		</script>
+
+    </body>
 
 </html>

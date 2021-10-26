@@ -1,124 +1,531 @@
 {% extends 'passenger/layouts/base.html' %}
 {% load static %}
-{% block title %}index{% endblock %}
+{% block title %}{% endblock %}
 {% block content %}
+<!-- ======================= Start Banner ===================== -->
+		<div class="main-banner" style="background-image:url({% static 'passenger/assets/img/banner-1.jpg' %});">
+			<div class="container">
+				<div class="col-md-12">
 
-    <!-- Hero Section Begin -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="hs-slider owl-carousel">
+					<div class="caption text-center cl-white">
+						<h2>Discover Your Next Adventure</h2>
+						<p>Expolore top rated tours, hotels and restaurants around the world</p>
+					</div>
 
-                <div class="hs-item set-bg" data-setbg="{% static 'passenger/img/hero/hero-1.jpg' %}">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="hc-inner-text">
-                                <div class="hc-text">
-                                    <h4>Balaji Symphony</h4>
-                                    <p><span class="icon_pin_alt"></span> Panvel, Navi Mumbai</p>
-                                    <div class="label">For Rent</div>
-                                    <h5>$ 65.0<span>/month</span></h5>
-                                </div>
-                                <div class="hc-widget">
-                                    <ul>
-                                        <li><i class="fa fa-object-group"></i> 2, 283</li>
-                                        <li><i class="fa fa-bathtub"></i> 03</li>
-                                        <li><i class="fa fa-bed"></i> 05</li>
-                                        <li><i class="fa fa-automobile"></i> 01</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+					<form>
+						<fieldset class="home-form-1">
 
-            </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
+							<div class="col-md-3 col-sm-3 padd-0">
+								<input type="text" class="form-control br-1" placeholder="City, Country">
+							</div>
 
-    <!-- Search Section Begin -->
-    <section class="search-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7">
-                    <div class="section-title">
-                        <h4>Where would you like to travel to?</h4>
-                    </div>
-                </div>
-<!--                <div class="col-lg-5">-->
-<!--                    <div class="change-btn">-->
-<!--                        <div class="cb-item">-->
-<!--                            <label for="cb-rent" class="active">-->
-<!--                                For Rent-->
-<!--                                <input type="radio" id="cb-rent">-->
-<!--                            </label>-->
-<!--                        </div>-->
-<!--                        <div class="cb-item">-->
-<!--                            <label for="cb-sale">-->
-<!--                                For Sale-->
-<!--                                <input type="radio" id="cb-sale">-->
-<!--                            </label>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-            </div>
-            <div class="search-form-content">
-                <form action="#" class="filter-form" method="get">
-                    <select class="sm-width" name="from">
-                        <option value="" selected disabled>From</option>
-                        {% for object in place %}
-                            <option value="{{object.id}}">{{object.name}}</option>
-                        {% endfor %}
-                    </select>
-                    <select class="sm-width" name="to">
-                        <option value="" selected disabled>to</option>
-                        {% for object in place %}
-                            <option value="{{object.id}}">{{object.name}}</option>
-                        {% endfor %}
-                    </select>
-                    <button type="submit" class="search-btn sm-width">Search</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <!-- Search Section End -->
+							<div class="col-md-3 col-sm-3 padd-0">
+								<input type="text" name="book-date" class="form-control br-1" value="When...">
+							</div>
 
-    <!-- Chooseus Section Begin -->
-    <section class="chooseus-section spad set-bg" data-setbg="{% static 'passenger/img/chooseus/chooseus-bg.jpg' %}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="chooseus-text">
-                        <div class="section-title">
-                            <h4>Why choose us</h4>
-                        </div>
-                        <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown
-                            printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    </div>
-                    <div class="chooseus-features">
-                        <div class="cf-item">
-                            <div class="cf-pic">
-                                <img src="{% static 'passenger/img/chooseus/chooseus-icon-1.png' %}" alt="">
-                            </div>
-                            <div class="cf-text">
-                                <h5>Fast travels</h5>
-                                <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
-                            </div>
-                        </div>
-                        <div class="cf-item">
-                            <div class="cf-pic">
-                                <img src="{% static 'passenger/img/chooseus/chooseus-icon-3.png' %}" alt="">
-                            </div>
-                            <div class="cf-text">
-                                <h5>Experienced pilots</h5>
-                                <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Chooseus Section End -->
+							<div class="col-md-2 col-sm-2 padd-0">
+								<div class="sl-box">
+									<select class="wide form-control br-1">
+										<option data-display="Adults">Adults</option>
+										<option value="1">01</option>
+										<option value="2">02</option>
+										<option value="3">03</option>
+										<option value="4">04</option>
+									</select>
+								</div>
+							</div>
 
+							<div class="col-md-2 col-sm-2 padd-0">
+								<div class="sl-box">
+									<select class="wide form-control br-1">
+										<option data-display="Children">Children</option>
+										<option value="1">01</option>
+										<option value="2">02</option>
+										<option value="3">03</option>
+										<option value="4">04</option>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="col-md-2 col-sm-2 padd-0">
+								<button type="submit" class="btn theme-btn cl-white seub-btn">FIND JOB</button>
+							</div>
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- ======================= End Banner ===================== -->
+		<div class="clearfix"></div>
+
+		<!-- ====================== How It Work ================= -->
+		<section class="how-it-works">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="heading">
+							<span class="theme-cl">Working Process</span>
+							<h1>How It Works?</h1>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-4 col-sm-4">
+						<div class="work-process">
+							<div class="process-img">
+								<img src="{% static 'passenger/assets/img/tour-1.png' %}" class="img-responsive" alt="" />
+								<span class="process-num">01</span>
+							</div>
+							<h4>Choose a Destination & Guide</h4>
+							<p>Post a job to tell us about your project. We'll quickly match you with the right freelancers.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-4">
+						<div class="work-process">
+							<div class="process-img">
+								<img src="{% static 'passenger/assets/img/tour-2.png' %}" class="img-responsive" alt="" />
+								<span class="process-num">02</span>
+							</div>
+							<h4>Choose your guide & Customize</h4>
+							<p>Post a job to tell us about your project. We'll quickly match you with the right freelancers.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-4">
+						<div class="work-process">
+							<div class="process-img">
+								<img src="{% static 'passenger/assets/img/tour-3.png' %}" class="img-responsive" alt="" />
+								<span class="process-num">03</span>
+							</div>
+							<h4>Book Your Guide Online</h4>
+							<p>Post a job to tell us about your project. We'll quickly match you with the right freelancers.</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- ====================== How It Work ================= -->
+		<div class="clearfix"></div>
+
+
+		<!-- ====================== Popular Tour ================= -->
+		<section class="gray-dot gray-bg">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="heading">
+							<span class="theme-cl">Select Tour</span>
+							<h1>Popular Tour</h1>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="list-slider">
+
+						<!-- Single Tour -->
+						<div class="list-slide-box">
+							<article class="tour-box style-1">
+
+								<!-- Single Tour -->
+								<div class="tour-box-image">
+									<figure>
+										<a href="tour-detail.html">
+											<img src="{% static 'passenger/assets/img/tour/tour-1.jpg' %}" class="img-responsive listing-box-img" alt="" />
+											<div class="list-overlay"></div>
+										</a>
+										<div class="entry-bookmark">
+											<a href="#"><i class="ti-bookmark"></i></a>
+										</div>
+										<div class="tour-time">
+											<i class="ti ti-car"></i><span>25h</span>
+										</div>
+										<h4 class="tour-place">
+											<a href="tour-detail.html">Istanbul, Turkey</a>
+										</h4>
+										<span class="featured-tour"><i class="fa fa-star"></i></span>
+										<a href="#" class="list-like left"><i class="ti-heart"></i></a>
+									</figure>
+								</div>
+
+								<div class="entry-meta">
+									<div class="meta-item meta-author">
+										<div class="coauthors">
+											<span class="vcard author">
+												<span class="fn">
+													<a href="#"><img alt="" src="{% static 'passenger/assets/img/user-1.jpg' %}" class="avatar avatar-24" height="24" width="24">Lisa Scholfield</a>
+												</span>
+											</span>
+										</div>
+									</div>
+									<div class="meta-item meta-comment fl-right">
+										<i class="ti-comment-alt"></i><span>25</span>
+									</div>
+									<div class="meta-item meta-rating fl-right">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
+								</div>
+
+								<div class="inner-box">
+									<div class="box-inner-ellipsis">
+										<h4 class="entry-title">
+											<a href="tour-detail.html">Netherlands</a>
+										</h4>
+										<div class="price-box">
+											<div class="tour-price fl-right">
+												<i class="ti ti-user"></i><span class="theme-cl f-bold">$187</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</article>
+						</div>
+
+						<!-- Single Tour -->
+						<div class="list-slide-box">
+							<article class="tour-box style-1">
+
+								<div class="tour-box-image">
+									<figure>
+										<a href="tour-detail.html">
+											<img src="{% static 'passenger/assets/img/tour/tour-2.jpg' %}" class="img-responsive listing-box-img" alt="" />
+											<div class="list-overlay"></div>
+										</a>
+										<div class="entry-bookmark">
+											<a href="#"><i class="ti-bookmark"></i></a>
+										</div>
+										<div class="tour-time">
+											<i class="ti ti-car"></i><span>2 days</span>
+										</div>
+										<h4 class="tour-place">
+											<a href="tour-detail.html">Kuala Lumpur, Malaysia</a>
+										</h4>
+										<span class="featured-tour"><i class="fa fa-star"></i></span>
+										<a href="#" class="list-like left"><i class="ti-heart"></i></a>
+									</figure>
+								</div>
+
+								<div class="entry-meta">
+									<div class="meta-item meta-author">
+										<div class="coauthors">
+											<span class="vcard author">
+												<span class="fn">
+													<a href="#"><img alt="" src="{% static 'passenger/assets/img/user-2.jpg' %}" class="avatar avatar-24" height="24" width="24">Lisa Scholfield</a>
+												</span>
+											</span>
+										</div>
+									</div>
+									<div class="meta-item meta-comment fl-right">
+										<i class="ti-comment-alt"></i><span>26</span>
+									</div>
+									<div class="meta-item meta-rating fl-right">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
+								</div>
+
+								<div class="inner-box">
+									<div class="box-inner-ellipsis">
+										<h4 class="entry-title">
+											<a href="tour-detail.html">Austrailia</a>
+										</h4>
+										<div class="price-box">
+											<div class="tour-price fl-right">
+												<i class="ti ti-user"></i><span class="theme-cl f-bold">$130</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</article>
+						</div>
+
+						<!-- Single Tour -->
+						<div class="list-slide-box">
+							<article class="tour-box style-1">
+
+								<div class="tour-box-image">
+									<figure>
+										<a href="tour-detail.html">
+											<img src="{% static 'passenger/assets/img/tour/tour-3.jpg' %}" class="img-responsive listing-box-img" alt="" />
+											<div class="list-overlay"></div>
+										</a>
+										<div class="entry-bookmark">
+											<a href="#"><i class="ti-bookmark"></i></a>
+										</div>
+										<div class="tour-time">
+											<i class="ti ti-car"></i><span>21h</span>
+										</div>
+										<h4 class="tour-place">
+											<a href="tour-detail.html">Singapore. platongkoh</a>
+										</h4>
+										<span class="featured-tour"><i class="fa fa-star"></i></span>
+										<a href="#" class="list-like left"><i class="ti-heart"></i></a>
+									</figure>
+								</div>
+
+								<div class="entry-meta">
+									<div class="meta-item meta-author">
+										<div class="coauthors">
+											<span class="vcard author">
+												<span class="fn">
+													<a href="#"><img alt="" src="{% static 'passenger/assets/img/user-3.jpg' %}" class="avatar avatar-24" height="24" width="24">Lisa Scholfield</a>
+												</span>
+											</span>
+										</div>
+									</div>
+									<div class="meta-item meta-comment fl-right">
+										<i class="ti-comment-alt"></i><span>17</span>
+									</div>
+									<div class="meta-item meta-rating fl-right">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
+								</div>
+
+								<div class="inner-box">
+									<div class="box-inner-ellipsis">
+										<h4 class="entry-title">
+											<a href="tour-detail.html">United States</a>
+										</h4>
+										<div class="price-box">
+											<div class="tour-price fl-right">
+												<i class="ti ti-user"></i><span class="theme-cl f-bold">$215</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</article>
+						</div>
+
+						<!-- Single Tour -->
+						<div class="list-slide-box">
+							<article class="tour-box style-1">
+
+								<div class="tour-box-image">
+									<figure>
+										<a href="tour-detail.html">
+											<img src="{% static 'passenger/assets/img/tour/tour-4.jpg' %}" class="img-responsive listing-box-img" alt="" />
+											<div class="list-overlay"></div>
+										</a>
+										<div class="entry-bookmark">
+											<a href="#"><i class="ti-bookmark"></i></a>
+										</div>
+										<div class="tour-time">
+											<i class="ti ti-car"></i><span>22h</span>
+										</div>
+										<h4 class="tour-place">
+											<a href="tour-detail.html">New York, Sean Pavone</a>
+										</h4>
+										<span class="featured-tour"><i class="fa fa-star"></i></span>
+										<a href="#" class="list-like left"><i class="ti-heart"></i></a>
+									</figure>
+								</div>
+
+								<div class="entry-meta">
+									<div class="meta-item meta-author">
+										<div class="coauthors">
+											<span class="vcard author">
+												<span class="fn">
+													<a href="#"><img alt="" src="{% static 'passenger/assets/img/user-4.jpg' %}" class="avatar avatar-24" height="24" width="24">Lisa Scholfield</a>
+												</span>
+											</span>
+										</div>
+									</div>
+									<div class="meta-item meta-comment fl-right">
+										<i class="ti-comment-alt"></i><span>18</span>
+									</div>
+									<div class="meta-item meta-rating fl-right">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
+								</div>
+
+								<div class="inner-box">
+									<div class="box-inner-ellipsis">
+										<h4 class="entry-title">
+											<a href="tour-detail.html">New York</a>
+										</h4>
+										<div class="price-box">
+											<div class="tour-price fl-right">
+												<i class="ti ti-user"></i><span class="theme-cl f-bold">$240</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</article>
+						</div>
+
+						<!-- Single Tour -->
+						<div class="list-slide-box">
+							<article class="tour-box style-1">
+
+								<div class="tour-box-image">
+									<figure>
+										<a href="tour-detail.html">
+											<img src="{% static 'passenger/assets/img/tour/tour-5.jpg' %}" class="img-responsive listing-box-img" alt="" />
+											<div class="list-overlay"></div>
+										</a>
+										<div class="entry-bookmark">
+											<a href="#"><i class="ti-bookmark"></i></a>
+										</div>
+										<div class="tour-time">
+											<i class="ti ti-car"></i><span>17h</span>
+										</div>
+										<h4 class="tour-place">
+											<a href="tour-detail.html">Dubai, United Arab Emirates</a>
+										</h4>
+										<span class="featured-tour"><i class="fa fa-star"></i></span>
+										<a href="#" class="list-like left"><i class="ti-heart"></i></a>
+									</figure>
+								</div>
+
+								<div class="entry-meta">
+									<div class="meta-item meta-author">
+										<div class="coauthors">
+											<span class="vcard author">
+												<span class="fn">
+													<a href="#"><img alt="" src="{% static 'passenger/assets/img/user-5.jpg' %}" class="avatar avatar-24" height="24" width="24">Lisa Scholfield</a>
+												</span>
+											</span>
+										</div>
+									</div>
+									<div class="meta-item meta-comment fl-right">
+										<i class="ti-comment-alt"></i><span>15</span>
+									</div>
+									<div class="meta-item meta-rating fl-right">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
+								</div>
+
+								<div class="inner-box">
+									<div class="box-inner-ellipsis">
+										<h4 class="entry-title">
+											<a href="tour-detail.html">Saudi Arabia</a>
+										</h4>
+										<div class="price-box">
+											<div class="tour-price fl-right">
+												<i class="ti ti-user"></i><span class="theme-cl f-bold">$117</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</article>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<!-- ====================== Popular Tour ================= -->
+		<div class="clearfix"></div>
+
+
+		<!-- ====================== Popular Guide ================= -->
+		<section class="tour-guide">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="heading">
+							<span class="theme-cl">Popular Guide</span>
+							<h1>Dedicated Guide</h1>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<!-- Single Guide -->
+					<div class="col-md-4">
+						<div class="guides-container">
+
+							<div class="guides-box">
+								<div class="guides-img-box">
+									<img src="{% static 'passenger/assets/img/user-1.jpg' %}" class="img-responsive" alt="" />
+								</div>
+								<div class="guider-detail">
+									<h4>Suryansh Vighul</h4>
+									<h5 class="theme-cl font-bold">$40/Hour</h5>
+								</div>
+							</div>
+							<a href="guide-detail.html" class="btn theme-btn full-width">Book Now</a>
+
+						</div>
+					</div>
+
+					<!-- Single Guide -->
+					<div class="col-md-4">
+						<div class="guides-container">
+
+							<div class="guides-box">
+								<div class="guides-img-box">
+									<img src="{% static 'passenger/assets/img/user-2.jpg' %}" class="img-responsive" alt="" />
+								</div>
+								<div class="guider-detail">
+									<h4>Ruchitha Riya</h4>
+									<h5 class="theme-cl font-bold">$52/Hour</h5>
+								</div>
+							</div>
+							<a href="guide-detail.html" class="btn theme-btn full-width">Book Now</a>
+
+						</div>
+					</div>
+
+					<!-- Single Guide -->
+					<div class="col-md-4">
+						<div class="guides-container">
+
+							<div class="guides-box">
+								<div class="guides-img-box">
+									<img src="{% static 'passenger/assets/img/user-3.jpg' %}" class="img-responsive" alt="" />
+								</div>
+								<div class="guider-detail">
+									<h4>Dev Singhania</h4>
+									<h5 class="theme-cl font-bold">$50/Hour</h5>
+								</div>
+							</div>
+							<a href="guide-detail.html" class="btn theme-btn full-width">Book Now</a>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- ====================== Popular Guide ================= -->
+		<div class="clearfix"></div>
 {% endblock %}

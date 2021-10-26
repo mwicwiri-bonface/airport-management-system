@@ -33,7 +33,7 @@ class PassengerLoginView(LoginView):
 
 class PassengerSignUpView(CreateView):
     form_class = PassengerSignUpForm
-    template_name = "passenger/account/register.html"
+    template_name = "passenger/account/signup.html"
 
     def get_form_kwargs(self):
         kwargs = super(PassengerSignUpView, self).get_form_kwargs()
@@ -118,7 +118,7 @@ def profile(request):
         'p_form': p_form,
         'form': form,
     }
-    return render(request, 'passenger/profile.html', context)
+    return render(request, 'passenger/my-profile.html', context)
 
 
 @passenger_required
@@ -249,3 +249,58 @@ class PropertySubmitView(View):
     def post(self, *args, **kwargs):
         pass
 
+
+def error(request):
+    return render(request, 'passenger/error/404.html')
+
+
+def about_us(request):
+    return render(request, 'passenger/about-us.html')
+
+
+def payment_method(request):
+    return render(request, 'passenger/payment-method.html')
+
+
+def profile(request):
+    return render(request, 'passenger/my-profile.html')
+
+
+def booking(request):
+    return render(request, 'passenger/booking-2.html')
+
+
+def contact(request):
+    return render(request, 'passenger/contact.html')
+
+
+def faq(request):
+    return render(request, 'passenger/faq.html')
+
+
+def flights(request):
+    return render(request, 'passenger/flights.html')
+
+
+def index(request):
+    return render(request, 'passenger/index.html')
+
+
+def login(request):
+    return render(request, 'passenger/login.html')
+
+
+def signup(request):
+    return render(request, 'passenger/signup.html')
+
+
+def success_page(request):
+    return render(request, 'passenger/success-page.html')
+
+
+def change_password(request):
+    return render(request, 'passenger/change-password.html')
+
+
+def receipts(request):
+    return render(request, 'passenger/receipts.html')
