@@ -1,7 +1,6 @@
 from django.urls import path
 
-from .views import IndexView, AboutView, AgentsView, BlogView, BlogDetailsView, ContactView, ProfileView, \
-    PropertyView, PropertyComparisonView, PropertyDetailsView, PropertySubmitView, PassengerLoginView, \
+from .views import IndexView, AboutView, ContactView, ProfileView, PassengerLoginView, \
     PassengerSignUpView, VerifyEmail, log_out, error, payment_method, booking, faq, flights, change_password, \
     success_page, receipts
 
