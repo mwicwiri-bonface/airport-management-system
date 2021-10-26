@@ -9,7 +9,7 @@
 	.main-banner {
 		padding:15% 0 5%;
 		min-height: 650px;
-		height: 100vh;
+		height: auto;
 	}
 	.page-title.image-title {
 		height: 450px;
