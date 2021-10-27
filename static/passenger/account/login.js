@@ -15,17 +15,20 @@ $(document).ready(function() {
                         $("#passenger-login-btn").html('Login');
                         if(response['info']) {
                          iziToast.info({
-                            title: 'Account Not Created:',
+                            title: 'Login Failed:',
                             message: response['info'],
                             position: 'topRight'
                           });
                         }
                         if(response['message']) {
                          iziToast.success({
-                            title: 'Account Created:',
+                            title: 'Logged in:',
                             message: response['message'],
                             position: 'topRight'
                           });
+                          setTimeout(function () {
+                         location.reload()
+                        }, 5200);
                         }
                         if(response['form']['username']) {
                            $("#error-username").html(response['form']['username']);

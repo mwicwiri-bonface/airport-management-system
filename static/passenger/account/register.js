@@ -2,7 +2,7 @@ console.log("Register Passenger")
 $(document).ready(function() {
         $("#passenger-register").submit(function(event) {
            event.preventDefault();
-           $("#passenger-register-btn").html(`<i class="ti-reload"></i>`);
+           $("#passenger-register-btn").html(`<i class="fa fa-hourglass-1 (alias) fa-spin"></i>`);
            $.ajax({ data: $(this).serialize(),
                     type: $(this).attr('method'),
                     url: $(this).attr('action'),
@@ -30,6 +30,9 @@ $(document).ready(function() {
                             message: response['message'],
                             position: 'topRight'
                           });
+                          setTimeout(function () {
+                         location.reload()
+                        }, 5200);
                         }
                         if(response['last_name']) {
                            $("#error_last_name").html(response['last_name']);
