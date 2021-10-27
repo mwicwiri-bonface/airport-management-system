@@ -4,7 +4,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils import timezone
@@ -13,11 +13,12 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views import View
 from django.views.generic import CreateView, ListView
 
-from airport.models import Place, Flight
+from airport.models import Place, Flight, Booking
 from passenger.forms import PassengerForm, PassengerProfileForm, PassengerSignUpForm, PassengerAuthenticationForm
 from passenger.models import Passenger
 from user.decorators import passenger_required
 from user.tokens import account_activation_token
+from utils.utils import generate_key
 
 
 class PassengerLoginView(LoginView):
@@ -97,29 +98,6 @@ class VerifyEmail(View):
             return JsonResponse(data)
 
 
-def log_out(request):
-    logout(request)
-    messages.info(request, f"You've logged out successfully.")
-    return redirect('passenger:index')
-
-
-def faq(request):  # Not Done
-    context = {}
-    return render(request, 'passenger/faq.html', context)
-
-
-@passenger_required
-def change_password(request):
-    form = PasswordChangeForm(request.user)
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-    return render(request, 'passenger/change-password.html', {'form': form})
-
-
 class IndexView(View):
     template_name = "passenger/index.html"
 
@@ -172,14 +150,6 @@ class ProfileView(View):
         return render(self.request, self.template_name, {'p_form': p_form, 'form': form, })
 
 
-def payment_method(request):
-    return render(request, 'passenger/payment-method.html')
-
-
-def booking(request):
-    return render(request, 'passenger/booking.html')
-
-
 class FlightsListView(ListView):
     template_name = "passenger/flights.html"
     model = Flight
@@ -200,25 +170,50 @@ class FlightsListView(ListView):
         return render(self.request, self.template_name, {'object_list': object_list})
 
 
+@passenger_required
+def change_password(request):
+    form = PasswordChangeForm(request.user)
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+    return render(request, 'passenger/change-password.html', {'form': form})
+
+
+def payment_method(request):
+    return render(request, 'passenger/payment-method.html')
+
+
+def booking_api(request):
+    if request.method == "POST":
+        flight_id = request.POST.get('id')
+        if Flight.objects.filter(id=flight_id).exists():
+            flight = Flight.objects.get(id=flight_id)
+            Booking.objects.create(flight=flight, passenger=request.user.passenger, code=generate_key(12, 12))
+            messages.success(request, "Flight has been booked successfully")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def booking(request):
+    return render(request, 'passenger/booking.html')
+
+
 def success_page(request):
     return render(request, 'passenger/success-page.html')
+
+
+def faq(request):  # Not Done
+    context = {}
+    return render(request, 'passenger/faq.html', context)
 
 
 def receipts(request):
     return render(request, 'passenger/receipts.html')
 
 
-def error_404(request, exception):
-    return render(request, 'passenger/error/404.html')
-
-
-def error_403(request, exception):
-    return render(request, 'passenger/error/403.html')
-
-
-def error_500(request):
-    return render(request, 'passenger/error/500.html')
-
-
-def error_400(request, exception):
-    return render(request, 'passenger/error/400.html')
+def log_out(request):
+    logout(request)
+    messages.info(request, f"You've logged out successfully.")
+    return redirect('passenger:index')

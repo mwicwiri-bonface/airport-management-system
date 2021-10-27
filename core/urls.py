@@ -12,7 +12,7 @@ urlpatterns = [
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-handler404 = 'passenger.views.error_404'
-handler500 = 'passenger.views.error_500'
-handler403 = 'passenger.views.error_403'
-handler400 = 'passenger.views.error_400'
+handler404 = 'passenger.errors.error_404'
+handler500 = 'passenger.errors.error_500'
+handler403 = 'passenger.errors.error_403'
+handler400 = 'passenger.errors.error_400'

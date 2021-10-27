@@ -1,5 +1,4 @@
 from django.urls import path
-
 from .views import IndexView, AboutView, ContactView, ProfileView, PassengerLoginView, \
     PassengerSignUpView, VerifyEmail, log_out, payment_method, booking, faq, FlightsListView, change_password, \
     success_page, receipts
