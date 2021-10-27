@@ -15,9 +15,11 @@ from django.views import View
 from django.views.generic import CreateView, ListView
 
 from airport.models import Place, Flight, Booking
-from passenger.forms import PassengerForm, PassengerProfileForm, PassengerSignUpForm, PassengerAuthenticationForm
+from passenger.forms import PassengerForm, PassengerProfileForm, PassengerSignUpForm, PassengerAuthenticationForm, \
+    PassengerFeedbackForm
 from passenger.models import Passenger
 from user.decorators import passenger_required
+from user.models import User
 from user.tokens import account_activation_token
 from utils.utils import generate_key
 
@@ -131,14 +133,31 @@ class ContactView(View):
         pass
 
 
-class FeedbackView(View):
+class FeedbackView(CreateView):
+    form_class = PassengerFeedbackForm
     template_name = "passenger/feedback.html"
 
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+    def get_form_kwargs(self):
+        kwargs = super(FeedbackView, self).get_form_kwargs()
+        return kwargs
 
-    def post(self, *args, **kwargs):
-        pass
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        return render(self.request, self.template_name, {'form': form})
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.admin = User.objects.filter(is_staff=True).first()
+        instance.user = self.request.user.passenger
+        instance.save()
+        messages.success(self.request, 'Thank you for your feedback.')
+        return redirect('passenger:index')
 
 
 @method_decorator(passenger_required, name='dispatch')

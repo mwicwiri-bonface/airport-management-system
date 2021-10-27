@@ -2,7 +2,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms import ModelForm, forms
 
-from .models import Passenger, PassengerProfile
+from .models import Passenger, PassengerProfile, PassengerFeedback
 
 
 class PassengerSignUpForm(UserCreationForm):
@@ -29,6 +29,12 @@ class PassengerForm(ModelForm):
     class Meta:
         model = Passenger
         fields = ['last_name', 'first_name', 'email']
+
+
+class PassengerFeedbackForm(ModelForm):
+    class Meta:
+        model = PassengerFeedback
+        fields = ['subject', 'message']
 
 
 class PassengerAuthenticationForm(AuthenticationForm):

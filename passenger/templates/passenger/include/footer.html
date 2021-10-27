@@ -28,6 +28,10 @@
 									<li><a href="{% url 'passenger:faq' %}">FAQs</a></li>
 									<li><a href="{% url 'passenger:about_us' %}">About Us</a></li>
 									<li><a href="{% url 'passenger:contact' %}">Contact</a></li>
+									{% if request.user.is_authenticated and request.user.is_passenger %}
+										<li><a href="{% url 'passenger:feedback' %}">Feedback</a></li>
+									{% endif %}
+
 								</ul>
 							</div>
 						</div>

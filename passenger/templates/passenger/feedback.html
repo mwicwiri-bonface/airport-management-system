@@ -1,7 +1,7 @@
 {% extends 'passenger/layouts/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %} Change Password {% endblock %}
+{% block title %} Feedback {% endblock %}
 {% block content %}
 
 		<!-- ======================= Start Checkout ===================== -->
@@ -13,7 +13,7 @@
 						<div class="row mrg-0 mrg-top-20">
 							<div class="tr-single-box">
 								<div class="tr-single-header">
-									<h3 class="dashboard-title">Change Password</h3>
+									<h3 class="dashboard-title">Feedback</h3>
 								</div>
 								<div class="tr-single-body">
 									<div class="row">
@@ -22,25 +22,19 @@
 											<!-- col-md-4 -->
 											<div class="col-md-12">
 												<p>
-													<label>old password</label>
-													{% render_field form.old_password class+="form-control" %}
-													<div class="text-danger">{{form.errors.old_password}}</div>
+													<label>subject</label>
+													{% render_field form.subject class+="form-control" %}
+													<div class="text-danger">{{form.errors.subject}}</div>
 												</p>
 
 												<p>
-													<label>New Password</label>
-													{% render_field form.new_password1 class+="form-control" %}
-													<div class="text-danger">{{form.errors.new_password1}}</div>
-												</p>
-
-												<p>
-													<label>Confirm new Password</label>
-													{% render_field form.new_password2 class+="form-control" %}
-													<div class="text-danger">{{form.errors.new_password2}}</div>
+													<label>message</label>
+													{% render_field form.message class+="form-control height-150" %}
+													<div class="text-danger">{{form.errors.message}}</div>
 												</p>
 											</div>
 											<!-- /col-md-4 -->
-											<div class="col-md-12"><button class="btn btn-primary">Update Password</button> </div>
+											<div class="col-md-12"><button class="btn btn-primary">Send</button> </div>
 										</form>
 									</div>
 								</div>
