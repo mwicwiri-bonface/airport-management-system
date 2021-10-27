@@ -22,19 +22,20 @@ from utils.utils import generate_key
 
 
 class PassengerLoginView(LoginView):
-    template_name = 'passenger/account/login.html'
+    template_name = 'passenger/include/accounts.html'
     authentication_form = PassengerAuthenticationForm
 
     def form_valid(self, form):
         """Security check complete. Log the user in."""
         print(form.get_user())
         login(self.request, form.get_user())
-        return redirect('passenger:index')
+        data = {'message': 'User has logged in successfully'}
+        return JsonResponse(data)
 
 
 class PassengerSignUpView(CreateView):
     form_class = PassengerSignUpForm
-    template_name = "'passenger/signup.html'"
+    template_name = 'passenger/include/accounts.html'
 
     def get_form_kwargs(self):
         kwargs = super(PassengerSignUpView, self).get_form_kwargs()
@@ -48,7 +49,7 @@ class PassengerSignUpView(CreateView):
             return self.form_invalid(form)
 
     def form_invalid(self, form):
-        return render(self.request, self.template_name, {'form': form})
+        return JsonResponse(form.errors)
 
     def form_valid(self, form):
         name = form.instance.first_name
@@ -66,10 +67,9 @@ class PassengerSignUpView(CreateView):
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         })
-        send_mail(subject, msg_plain, 'Varal Consultancy', [to_email], html_message=msg_html)
-        messages.success(self.request, f"Hi {name} {last}, your account has been created"
-                                       f" successfully verify your email.")
-        return redirect("passenger:login")
+        send_mail(subject, msg_plain, 'Air-kenya', [to_email], html_message=msg_html)
+        data = {"message": f"Hi {name} {last}, your account has been created successfully verify your email."}
+        return JsonResponse(data)
 
 
 class VerifyEmail(View):

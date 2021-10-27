@@ -24,16 +24,18 @@
 
                         <!-- Employer Panel 1-->
                         <div class="tab-pane fade in show active" id="login" role="tabpanel">
-                            <form method="post">
+                            <form method="post" action="{% url 'passenger:login' %}" id="passenger-login">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label>User Name</label>
-                                    <input type="text" class="form-control" placeholder="User Name">
+                                    <input type="text" class="form-control" name="username" placeholder="User Name">
+                                    <div class="error-username"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="*********">
+                                    <input type="password" class="form-control" name="password" id="id_password" placeholder="*********">
+                                    <div class="error-password"></div>
                                 </div>
 
                                 <div class="form-group">
@@ -44,7 +46,7 @@
                                     <a href="#" title="Forget" class="fl-right">Forgot Password?</a>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="button" class="btn theme-btn full-width btn-m">Login </button>
+                                    <button type="submit" class="btn theme-btn full-width btn-m" id="passenger-login-btn">Login </button>
                                 </div>
 
                             </form>
@@ -54,41 +56,47 @@
 
                         <!-- Candidate Panel 2-->
                         <div class="tab-pane fade" id="register" role="tabpanel">
-                            <form method="post">
+                            <form method="post" action="{% url 'passenger:sign_up' %}" id="passenger-register">
                                 {% csrf_token %}
 
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input type="text" class="form-control" placeholder="First Name">
+                                    <input type="text" class="form-control" name="first_name" id="id_first_name" placeholder="First Name">
+                                    <div class="text-danger" id="error_first_name"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" placeholder="Last Name">
+                                    <input type="text" class="form-control" name="last_name" id="id_last_name" placeholder="Last Name">
+                                    <div class="text-danger" id="error_last_name"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>User Name</label>
-                                    <input type="text" class="form-control" placeholder="User Name">
+                                    <input type="text" class="form-control" name="username" id="id_username" placeholder="User Name">
+                                    <div class="text-danger" id="error_username"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input type="email" class="form-control" placeholder="Email Address">
+                                    <input type="email" class="form-control" name="email" id="id_email" placeholder="Email Address">
+                                    <div class="text-danger" id="error_email"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="*********">
+                                    <input type="password" class="form-control" name="password1" id="id_password1" placeholder="*********">
+                                    <div class="text-danger" id="error_password1"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Confirm Password</label>
-                                    <input type="password" class="form-control" placeholder="*********">
+                                    <input type="password" class="form-control" name="password2" id="id_password2" placeholder="*********">
+                                    <div class="text-danger" id="error_password2"></div>
                                 </div>
 
                                 <div class="form-group text-center">
-                                    <button type="button" class="btn theme-btn full-width btn-m">Register </button>
+                                    <button type="submit" class="btn theme-btn full-width btn-m" id="passenger-register-btn">Register </button>
                                 </div>
 
                             </form>
