@@ -8,6 +8,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views import View
@@ -140,6 +141,7 @@ class FeedbackView(View):
         pass
 
 
+@method_decorator(passenger_required, name='dispatch')
 class ProfileView(View):
     template_name = "passenger/profile.html"
 
@@ -180,6 +182,7 @@ class FlightsListView(ListView):
         return render(self.request, self.template_name, {'object_list': object_list})
 
 
+@passenger_required
 def booking_api(request):
     if request.method == "POST":
         flight_id = request.POST.get('id')
@@ -202,14 +205,17 @@ def change_password(request):
     return render(request, 'passenger/change-password.html', {'form': form})
 
 
+@passenger_required
 def payment_method(request):
     return render(request, 'passenger/payment-method.html')
 
 
+@passenger_required
 def booking(request):
     return render(request, 'passenger/booking.html')
 
 
+@passenger_required
 def success_page(request):
     return render(request, 'passenger/success-page.html')
 
@@ -219,6 +225,7 @@ def faq(request):  # Not Done
     return render(request, 'passenger/faq.html', context)
 
 
+@passenger_required
 def receipts(request):
     return render(request, 'passenger/receipts.html')
 
