@@ -157,7 +157,11 @@
 								<div class="inner-box">
 									<div class="box-inner-ellipsis">
 										<h4 class="entry-title">
-											<a class="btn btn-primary red-btn" href="#">Book Flight</a>
+											<form method="post" action="{% url 'passenger:booking_api' %}">
+												{% csrf_token %}
+												<input type="hidden" name="flight_id" value="{{object.id}}">
+												<button class="btn btn-primary" type="submit">Book Flight</button>
+											</form>
 										</h4>
 										<div class="price-box">
 											<div class="tour-price fl-right">

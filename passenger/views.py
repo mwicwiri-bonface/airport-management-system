@@ -204,7 +204,7 @@ class FlightsListView(ListView):
 @passenger_required
 def booking_api(request):
     if request.method == "POST":
-        flight_id = request.POST.get('id')
+        flight_id = request.POST.get('flight_id')
         if Flight.objects.filter(id=flight_id).exists():
             flight = Flight.objects.get(id=flight_id)
             Booking.objects.create(flight=flight, passenger=request.user.passenger, code=generate_key(12, 12))
