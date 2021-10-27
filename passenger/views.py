@@ -148,7 +148,7 @@ class ProfileView(View):
     def get(self, *args, **kwargs):
         request = self.request
         p_form = PassengerProfileForm(instance=request.user.passenger.passengerprofile)
-        form = PassengerForm(request.POST, instance=request.user.passenger)
+        form = PassengerForm(instance=request.user.passenger)
         return render(self.request, self.template_name, {'p_form': p_form, 'form': form, })
 
     def post(self, *args, **kwargs):
