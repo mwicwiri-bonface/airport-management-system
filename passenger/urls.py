@@ -14,6 +14,7 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name="about_us"),
     path('payment_method/', payment_method, name="payment_method"),
     path('booking/', booking, name="booking"),
+    path('log_out/', log_out, name="log_out"),
     path('faq/', faq, name="faq"),
     path('flights/', FlightsListView.as_view(), name="flights"),
     path('change_password/', change_password, name="change_password"),
