@@ -265,4 +265,4 @@ def receipts(request):
 def log_out(request):
     logout(request)
     messages.info(request, f"You've logged out successfully.")
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return redirect('passenger:index')
