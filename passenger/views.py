@@ -130,6 +130,16 @@ class ContactView(View):
         pass
 
 
+class FeedbackView(View):
+    template_name = "passenger/feedback.html"
+
+    def get(self, *args, **kwargs):
+        return render(self.request, self.template_name)
+
+    def post(self, *args, **kwargs):
+        pass
+
+
 class ProfileView(View):
     template_name = "passenger/profile.html"
 

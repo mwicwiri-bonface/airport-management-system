@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import IndexView, AboutView, ContactView, ProfileView, PassengerLoginView, \
     PassengerSignUpView, VerifyEmail, log_out, payment_method, booking, faq, FlightsListView, change_password, \
-    success_page, receipts
+    success_page, receipts, FeedbackView
 
 urlpatterns = [
     path('logout/', log_out, name="logout"),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('sign-up/', PassengerSignUpView.as_view(), name="sign_up"),
     path('login/', PassengerLoginView.as_view(), name="login"),
     path('profile/', ProfileView.as_view(), name="profile"),
+    path('feedback/', FeedbackView.as_view(), name="feedback"),
     path('contact/', ContactView.as_view(), name="contact"),
     path('about/', AboutView.as_view(), name="about_us"),
     path('payment_method/', payment_method, name="payment_method"),
