@@ -170,6 +170,16 @@ class FlightsListView(ListView):
         return render(self.request, self.template_name, {'object_list': object_list})
 
 
+def booking_api(request):
+    if request.method == "POST":
+        flight_id = request.POST.get('id')
+        if Flight.objects.filter(id=flight_id).exists():
+            flight = Flight.objects.get(id=flight_id)
+            Booking.objects.create(flight=flight, passenger=request.user.passenger, code=generate_key(12, 12))
+            messages.success(request, "Flight has been booked successfully")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
 @passenger_required
 def change_password(request):
     form = PasswordChangeForm(request.user)
@@ -184,16 +194,6 @@ def change_password(request):
 
 def payment_method(request):
     return render(request, 'passenger/payment-method.html')
-
-
-def booking_api(request):
-    if request.method == "POST":
-        flight_id = request.POST.get('id')
-        if Flight.objects.filter(id=flight_id).exists():
-            flight = Flight.objects.get(id=flight_id)
-            Booking.objects.create(flight=flight, passenger=request.user.passenger, code=generate_key(12, 12))
-            messages.success(request, "Flight has been booked successfully")
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def booking(request):
