@@ -220,9 +220,8 @@ def success_page(request):
     return render(request, 'passenger/success-page.html')
 
 
-def faq(request):  # Not Done
-    context = {}
-    return render(request, 'passenger/faq.html', context)
+def faq(request):
+    return render(request, 'passenger/faqs.html')
 
 
 @passenger_required
