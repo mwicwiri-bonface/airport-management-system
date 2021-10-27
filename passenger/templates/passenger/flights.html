@@ -17,43 +17,6 @@
 		<!-- =========== Start All Destination In Grid View =================== -->
 		<section class="gray-bg">
 			<div class="container">
-					
-<!--				&lt;!&ndash; Row &ndash;&gt;-->
-<!--				<div class="row mrg-0">-->
-<!--					<div class="tr-single-box short-box">-->
-<!--						<div class="col-sm-3 hidden-xs align-self-center">-->
-<!--							<h4>Shorty By</h4>-->
-<!--						</div>-->
-<!--						-->
-<!--						<div class="col-sm-9 text-right">-->
-<!--						-->
-<!--							<div class="btn-group mr-lg-2">-->
-<!--								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--									Short By-->
-<!--								</button>-->
-<!--								<div class="dropdown-menu pull-right animated flipInX">-->
-<!--									<a href="#">Accending</a>-->
-<!--									<a href="#">Decending</a>-->
-<!--									<a href="#">By Date</a>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--							-->
-<!--							<div class="btn-group">-->
-<!--								 <a href="#" class="btn btn-default tooltips">-->
-<!--									 <i class="ti-flix ti-layout-grid2"></i>-->
-<!--								 </a>-->
-<!--							</div>-->
-
-<!--							<div class="btn-group">-->
-<!--								 <a href="#" class="btn btn-default tooltips">-->
-<!--									 <i class="ti-flix ti-view-list-alt"></i>-->
-<!--								 </a>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				&lt;!&ndash; /Row &ndash;&gt;-->
-<!--						-->
 				<div class="row">
 					{% for object in object_list %}
 						<!-- Single Destination -->
@@ -66,22 +29,13 @@
 											<img src="{% static 'passenger/assets/img/destination/des-8.jpg' %}" class="img-responsive listing-box-img" alt="" />
 											<div class="list-overlay"></div>
 										</a>
-<!--										<div class="discount-flick">-12%</div>-->
 										<h4 class="destination-place">
 											<a href="#">from {{object.route.source}} to, {{object.route.destination}}</a>
 										</h4>
-<!--										<a href="#" class="list-like left"><i class="ti-heart"></i></a>-->
 									</figure>
 								</div>
 
 								<div class="entry-meta">
-<!--									<div class="meta-item meta-rating">-->
-<!--										<i class="fa fa-star"></i>-->
-<!--										<i class="fa fa-star"></i>-->
-<!--										<i class="fa fa-star"></i>-->
-<!--										<i class="fa fa-star"></i>-->
-<!--										<i class="fa fa-star-half"></i>-->
-<!--									</div>-->
 									<div class="meta-item meta-comment fl-right">
 										<span class="real-price padd-l-10 font-bold">{{object.price}}</span>
 									</div>
@@ -90,7 +44,11 @@
 								<div class="inner-box">
 									<div class="box-inner-ellipsis">
 										<h4 class="entry-location">
-											<a class="btn btn-primary red-btn" href="#">Book Flight</a>
+											<form method="post" action="{% url 'passenger:booking_api' %}">
+												{% csrf_token %}
+												<input type="hidden" name="flight_id" value="{{object.id}}">
+												<button class="btn btn-primary" type="submit">Book Flight</button>
+											</form>
 										</h4>
 										<div class="price-box">
 											<div class="destination-price fl-right">
