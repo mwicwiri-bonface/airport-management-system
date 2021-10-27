@@ -2,7 +2,7 @@ console.log("Login Passenger")
 $(document).ready(function() {
         $("#passenger-login").submit(function(event) {
            event.preventDefault();
-           $("#passenger-login-btn").html(`<i class="ti-reload ti-pulse"></i>`);
+           $("#passenger-login-btn").html(`<i class="ti-reload"></i>`);
            $.ajax({ data: $(this).serialize(),
                     type: $(this).attr('method'),
                     url: $(this).attr('action'),
