@@ -1,0 +1,18 @@
+{% extends 'passenger/error/layouts/base.html' %}
+{% load static %}
+{% block title %} Bad Request {% endblock %}
+{% block content %}
+		<!-- ======================= 400 ===================== -->
+		<section>
+			<div class="container">
+				<div class="error-page padd-top-30 padd-bot-30">
+					<h1 class="mrg-top-15 mrg-bot-0 theme-cl font-250 font-bold">400</h1>
+					<h2 class="mrg-top-10 mrg-bot-5 funky-font font-60">Oh, Uh</h2>
+					<p>We were unable to process your request </p>
+					<a href="{% url 'passenger:index' %}" class="btn theme-btn mrg-top-20">Go To Home Page</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ======================= End 400 ===================== -->
+{% endblock %}

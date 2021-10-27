@@ -1,0 +1,18 @@
+{% extends 'passenger/error/layouts/base.html' %}
+{% load static %}
+{% block title %} Forbidden {% endblock %}
+{% block content %}
+		<!-- ======================= 403 ===================== -->
+		<section>
+			<div class="container">
+				<div class="error-page padd-top-30 padd-bot-30">
+					<h1 class="mrg-top-15 mrg-bot-0 theme-cl font-250 font-bold">403</h1>
+					<h2 class="mrg-top-10 mrg-bot-5 funky-font font-60">Ooops!</h2>
+					<p> You don’t have permission to access [directory] on this server, try again </p>
+					<a href="{% url 'passenger:index' %}" class="btn theme-btn mrg-top-20">Go To Home Page</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ======================= End 403 ===================== -->
+{% endblock %}
