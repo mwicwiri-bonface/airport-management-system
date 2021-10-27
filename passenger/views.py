@@ -7,7 +7,6 @@ from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -34,7 +33,7 @@ class PassengerLoginView(LoginView):
 
 class PassengerSignUpView(CreateView):
     form_class = PassengerSignUpForm
-    template_name = "passenger/account/signup.html"
+    template_name = "'passenger/signup.html'"
 
     def get_form_kwargs(self):
         kwargs = super(PassengerSignUpView, self).get_form_kwargs()
@@ -58,7 +57,7 @@ class PassengerSignUpView(CreateView):
         user.save()
         current_site = get_current_site(self.request)
         to_email = form.cleaned_data.get('email')
-        subject = f'Software Trainee Passenger Email Verification.'
+        subject = f'Passenger Email Verification.'
         msg_plain = render_to_string('passenger/emails/email.txt', {'user_name': user.get_full_name, })
         msg_html = render_to_string('passenger/emails/account_activation_email.html', {
             'user': user,
@@ -104,24 +103,6 @@ def log_out(request):
     return redirect('passenger:index')
 
 
-@passenger_required
-def profile(request):
-    p_form = PassengerProfileForm(instance=request.user.passenger.passengerprofile)
-    form = PassengerForm(request.POST, instance=request.user.passenger)
-    if request.method == "POST":
-        p_form = PassengerProfileForm(request.POST, request.FILES, instance=request.user.passenger.passengerprofile)
-        form = PassengerForm(request.POST, instance=request.user.passenger)
-        if form.is_valid() and p_form.is_valid():
-            form.save()
-            p_form.save()
-            messages.success(request, "Your Profile has been updated!")
-    context = {
-        'p_form': p_form,
-        'form': form,
-    }
-    return render(request, 'passenger/my-profile.html', context)
-
-
 def faq(request):  # Not Done
     context = {}
     return render(request, 'passenger/faq.html', context)
@@ -152,7 +133,7 @@ class IndexView(View):
 
 
 class AboutView(View):
-    template_name = "passenger/about.html"
+    template_name = 'passenger/about-us.html'
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)
@@ -175,18 +156,20 @@ class ProfileView(View):
     template_name = "passenger/profile.html"
 
     def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+        request = self.request
+        p_form = PassengerProfileForm(instance=request.user.passenger.passengerprofile)
+        form = PassengerForm(request.POST, instance=request.user.passenger)
+        return render(self.request, self.template_name, {'p_form': p_form, 'form': form, })
 
     def post(self, *args, **kwargs):
-        pass
-
-
-def error(request):
-    return render(request, 'passenger/error/404.html')
-
-
-def about_us(request):
-    return render(request, 'passenger/about-us.html')
+        request = self.request
+        p_form = PassengerProfileForm(request.POST, request.FILES, instance=request.user.passenger.passengerprofile)
+        form = PassengerForm(request.POST, instance=request.user.passenger)
+        if form.is_valid() and p_form.is_valid():
+            form.save()
+            p_form.save()
+            messages.success(request, "Your Profile has been updated!")
+        return render(self.request, self.template_name, {'p_form': p_form, 'form': form, })
 
 
 def payment_method(request):
@@ -195,10 +178,6 @@ def payment_method(request):
 
 def booking(request):
     return render(request, 'passenger/booking.html')
-
-
-def contact(request):
-    return render(request, 'passenger/contact.html')
 
 
 class FlightsListView(ListView):
@@ -221,17 +200,25 @@ class FlightsListView(ListView):
         return render(self.request, self.template_name, {'object_list': object_list})
 
 
-def index(request):
-    return render(request, 'passenger/index.html')
-
-
-def signup(request):
-    return render(request, 'passenger/signup.html')
-
-
 def success_page(request):
     return render(request, 'passenger/success-page.html')
 
 
 def receipts(request):
     return render(request, 'passenger/receipts.html')
+
+
+def error_404(request, exception):
+    return render(request, 'passenger/error/404.html')
+
+
+def error_403(request, exception):
+    return render(request, 'passenger/error/403.html')
+
+
+def error_500(request):
+    return render(request, 'passenger/error/500.html')
+
+
+def error_400(request, exception):
+    return render(request, 'passenger/error/400.html')
