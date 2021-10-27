@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.http import JsonResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -15,6 +15,7 @@ from django.views import View
 from django.views.generic import CreateView, ListView
 
 from airport.models import Place, Flight, Booking
+from finance.models import Payment
 from passenger.forms import PassengerForm, PassengerProfileForm, PassengerSignUpForm, PassengerAuthenticationForm, \
     PassengerFeedbackForm
 from passenger.models import Passenger
@@ -229,7 +230,15 @@ def change_password(request):
 
 
 @passenger_required
-def payment_method(request):
+def payment_method(request, slug):
+    booking_obj = get_object_or_404(Booking, slug=slug)
+    if request.method == "POST":
+        mpesa = request.POST.get('mpesa')
+        if len(mpesa) == 10:
+            Payment.objects.create(code=generate_key(11, 11), booking=booking_obj, passenger=request.user.passenger,
+                                   mpesa=mpesa)
+        else:
+            messages.info(request, "Sorry, M-pesa code is invalid")
     return render(request, 'passenger/payment-method.html')
 
 
