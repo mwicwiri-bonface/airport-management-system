@@ -231,7 +231,8 @@ def payment_method(request):
 
 @passenger_required
 def booking(request):
-    return render(request, 'passenger/booking.html')
+    bookings = Booking.objects.filter(passenger=request.user.passenger).order_by('-created')
+    return render(request, 'passenger/booking.html', {'bookings': bookings})
 
 
 @passenger_required

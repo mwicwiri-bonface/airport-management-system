@@ -27,7 +27,7 @@
 									
 									<!-- row -->
 									<div class="row">
-										
+										{% for booking in bookings %}
 										<!-- Single booking -->
 										<div class="col-md-12 ">
 											<div class="dasboard-prop-listing ">
@@ -38,38 +38,39 @@
 												</div>
 												<div class="prop-info">
 													<h4 class="listing_title_book">
-														Hotel Green Resort vally, Shimla
+														From {{booking.flight.route.source}} to, {{booking.flight.route.destination}}
 													</h4>
 
+<!--													<div class="user_dashboard_listed">-->
+<!--														<strong>Period:</strong>  10-12-2018 <strong>to</strong> 19-12-2018 -->
+<!--													</div>-->
+
 													<div class="user_dashboard_listed">
-														<strong>Period:</strong>  10-12-2018 <strong>to</strong> 19-12-2018 
-													</div>
-													
-													<div class="user_dashboard_listed">
-														<strong>Night:</strong>  7th 
+														<strong>Date:</strong> {{booking.created}}
 													</div>
 
 													<div class="user_dashboard_listed">
-														<strong>Invoice No: </strong> BA0324 254 875 4158 
+														<strong>Booking No: </strong> {{booking.code}}
 													</div>
 
-													<div class="user_dashboard_listed">
-														<strong>Adults:  </strong> 4th  
-													</div>
-													
-													<div class="user_dashboard_listed">
-														<strong>Children:  </strong> 2th  
-													</div> 													
+<!--													<div class="user_dashboard_listed">-->
+<!--														<strong>Adults:  </strong> 4th  -->
+<!--													</div>-->
+<!--													-->
+<!--													<div class="user_dashboard_listed">-->
+<!--														<strong>Children:  </strong> 2th  -->
+<!--													</div> 													-->
 												</div>
 												<div class="info-container_booking">
-													<span class="booking-success">Confirmed</span>
-													<a href="invoice.html" class="booking-detail">View Detail</a>
+													<span class="booking-success">Pay Now</span>
+<!--													<a href="invoice.html" class="booking-detail">View Detail</a>-->
 													<span class="booking-cancel">Cancel Booking</span>
 												</div>
 											</div>
 											
 										</div>
 <!--										end booking -->
+										{% endblock %}
 									</div>
 								</div>
 							</div>
