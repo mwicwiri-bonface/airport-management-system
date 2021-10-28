@@ -109,7 +109,7 @@ class IndexView(View):
 
     def get(self, *args, **kwargs):
         place = Place.objects.all()
-        flight = Flight.objects.all()
+        flight = Flight.objects.filter(departure__gte=timezone.now())
         return render(self.request, self.template_name, {'place': place, 'flights': flight})
 
     def post(self, *args, **kwargs):
