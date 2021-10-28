@@ -95,7 +95,7 @@
 		{% for message in messages %}
 		<script>
 			let message = "{{message}}"
-			let message_tag = "{{message.tag}}"
+			let message_tag = "{{message.tags}}"
 			console.log(message)
 			if (message_tag === "success" ){
 			  iziToast.success({
