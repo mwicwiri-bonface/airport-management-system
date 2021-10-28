@@ -283,8 +283,7 @@ def faq(request):
 
 @passenger_required
 def receipts(request):
-    tickets = Booking.objects.filter(paid=True, flight__arrival__lte=timezone.now(),
-                                     flight__departure__gte=timezone.now())
+    tickets = Booking.objects.filter(passenger=request.user.passenger, paid=True)
     return render(request, 'passenger/receipts.html', {'tickets': tickets})
 
 
