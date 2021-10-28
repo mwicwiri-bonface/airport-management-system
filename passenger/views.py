@@ -237,7 +237,9 @@ def booking_payment(request, slug):
             instance.passenger = request.user.passenger
             instance.amount = booking_obj.flight.price
             instance.finance = Finance.objects.filter(is_archived=False, is_active=True).first()
-            if Payment.objects.filter(mpesa=instance.mpesa).exists():
+            if Payment.objects.filter(passenger=instance.passenger, booking=instance.booking).exists():
+                messages.info(request, 'payment has already been made')
+            elif Payment.objects.filter(mpesa=instance.mpesa).exists():
                 messages.info(request, "Mpesa code has already been used")
             else:
                 instance.save()
