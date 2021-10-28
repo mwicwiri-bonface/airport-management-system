@@ -97,11 +97,20 @@
 			let message = "{{message}}"
 			let message_tag = "{{message.tag}}"
 			console.log(message)
-			  iziToast.message_tag({
-				title: message_tag,
+			if (message_tag === "success" ){
+			  iziToast.success({
+				title: Success,
 				message: message,
 				position: 'topRight'
 			  });
+			 }
+			if (message_tag === "info" ){
+			  iziToast.info({
+				title: Info,
+				message: message,
+				position: 'topRight'
+			  });
+			 }
 		</script>
 		{% endfor %}
 
