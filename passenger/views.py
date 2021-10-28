@@ -15,7 +15,8 @@ from django.views import View
 from django.views.generic import CreateView, ListView
 
 from airport.models import Place, Flight, Booking
-from finance.models import Payment
+from finance.forms import PaymentForm
+from finance.models import Payment, Finance
 from passenger.forms import PassengerForm, PassengerProfileForm, PassengerSignUpForm, PassengerAuthenticationForm, \
     PassengerFeedbackForm
 from passenger.models import Passenger
@@ -218,6 +219,33 @@ def booking_api(request):
 
 
 @passenger_required
+def booking(request):
+    bookings = Booking.objects.filter(passenger=request.user.passenger).order_by('-created')
+    return render(request, 'passenger/booking.html', {'bookings': bookings})
+
+
+@passenger_required
+def booking_payment(request, slug):
+    booking_obj = get_object_or_404(Booking, slug=slug)
+    form = PaymentForm()
+    if request.method == "POST":
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.code = generate_key(11, 11)
+            instance.booking = booking_obj
+            instance.passenger = request.user.passenger
+            instance.amount = booking_obj.flight.price
+            instance.finance = Finance.objects.filter(is_archived=False, is_active=True).first()
+            if Payment.objects.filter(mpesa=instance.mpesa).exists():
+                messages.info(request, "Mpesa code has already been used")
+            else:
+                instance.save()
+                messages.success(request, 'Payment has been done successfully')
+    return render(request, 'passenger/payment.html', {'form': form, 'booking_obj': booking_obj})
+
+
+@passenger_required
 def change_password(request):
     form = PasswordChangeForm(request.user)
     if request.method == 'POST':
@@ -227,25 +255,6 @@ def change_password(request):
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password was successfully updated!')
     return render(request, 'passenger/change-password.html', {'form': form})
-
-
-@passenger_required
-def payment_method(request, slug):
-    booking_obj = get_object_or_404(Booking, slug=slug)
-    if request.method == "POST":
-        mpesa = request.POST.get('mpesa')
-        if len(mpesa) == 10:
-            Payment.objects.create(code=generate_key(11, 11), booking=booking_obj, passenger=request.user.passenger,
-                                   mpesa=mpesa)
-        else:
-            messages.info(request, "Sorry, M-pesa code is invalid")
-    return render(request, 'passenger/payment-method.html')
-
-
-@passenger_required
-def booking(request):
-    bookings = Booking.objects.filter(passenger=request.user.passenger).order_by('-created')
-    return render(request, 'passenger/booking.html', {'bookings': bookings})
 
 
 @passenger_required

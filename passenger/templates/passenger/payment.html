@@ -1,0 +1,47 @@
+{% extends 'passenger/layouts/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Payment{% endblock %}
+{% block content %}
+
+		<!-- ======================= Start Checkout ===================== -->
+		<section class="dashboard gray-bg padd-0 mrg-top-50">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<div class="row mrg-0 mrg-top-20">
+							<div class="tr-single-box">
+								<div class="tr-single-header">
+									<h3 class="dashboard-title">Booking Payment</h3>
+								</div>
+								<div class="tr-single-body">
+									<div class="row">
+										<form method="post" action=".">
+											{% csrf_token %}
+											<!-- col-md-4 -->
+											<div class="col-md-12">
+												<p><strong>Booking :</strong> {{booking_obj.code}}</p>
+												<p><strong>Amount :</strong> {{booking_obj.flight.price}}</p>
+												<p><strong>Flight :</strong> from {{booking_obj.route.source}}, to {{booking_obj.route.destination}}</p>
+												<p><strong>Date :</strong>{{booking_obj.created}}</p>
+												<p>
+													<label>Mpesa</label>
+													{% render_field form.mpesa class+="form-control" %}
+													<div class="text-danger">{{form.errors.mpesa}}</div>
+												</p>
+											</div>
+											<!-- /col-md-4 -->
+											<div class="col-md-12"><button class="btn btn-primary">Make Payment</button> </div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- ======================= End Checkout ===================== -->
+		{% endblock %}

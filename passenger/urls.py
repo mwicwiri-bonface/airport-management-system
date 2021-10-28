@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import IndexView, AboutView, ContactView, ProfileView, PassengerLoginView, \
-    PassengerSignUpView, VerifyEmail, log_out, payment_method, booking, faq, FlightsListView, change_password, \
+    PassengerSignUpView, VerifyEmail, log_out, booking_payment, booking, faq, FlightsListView, change_password, \
     success_page, receipts, FeedbackView, booking_api
 
 urlpatterns = [
@@ -12,7 +12,7 @@ urlpatterns = [
     path('feedback/', FeedbackView.as_view(), name="feedback"),
     path('contact/', ContactView.as_view(), name="contact"),
     path('about/', AboutView.as_view(), name="about_us"),
-    path('payment/<slug>/', payment_method, name="payment"),
+    path('payment/<slug>/', booking_payment, name="payment"),
     path('booking_api/', booking_api, name="booking_api"),
     path('booking/', booking, name="booking"),
     path('log_out/', log_out, name="log_out"),

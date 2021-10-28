@@ -1,5 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm, forms
 
 from finance.models import FinanceProfile, Finance, Payment, FinanceFeedback
@@ -35,6 +36,12 @@ class PaymentForm(ModelForm):
     class Meta:
         model = Payment
         fields = ['mpesa', ]
+
+    def clean_mpesa(self):
+        mpesa = self.cleaned_data.get('mpesa')
+        if len(mpesa) != 10:
+            raise ValidationError("Mpesa code is invalid, please confirm")
+        return mpesa
 
 
 class FinanceFeedbackForm(ModelForm):
