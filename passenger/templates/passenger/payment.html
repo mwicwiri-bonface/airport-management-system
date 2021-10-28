@@ -24,7 +24,8 @@
 												<p><strong>Booking :</strong> {{booking_obj.code}}</p>
 												<p><strong>Amount :</strong> {{booking_obj.flight.price}}</p>
 												<p><strong>Flight :</strong> from {{booking_obj.flight.route.source}}, to {{booking_obj.flight.route.destination}}</p>
-												<p><strong>Date :</strong>{{booking_obj.created}}</p>
+												<p><strong>Booking Date :</strong>{{booking_obj.created}}</p>
+												<p><strong>Flight Date :</strong>{{booking_obj.flight.departure}}</p>
 												<p>
 													<label>Mpesa Code</label>
 													{% render_field form.mpesa class+="form-control" %}
