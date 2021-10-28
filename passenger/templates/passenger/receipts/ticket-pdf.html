@@ -1,25 +1,41 @@
-{% extends 'passenger/layouts/base.html' %}
-{% load static %}
-{% block title %} Tickets {% endblock %}
-{% block content %}
+<html>
+ <head>
+   <title>Test</title>
+   <style>
+     h1 {
+        margin-bottom: 1em;
+        font-size: 1em;
+        font-weight: bold;
+        text-align: center;
+     }
+    body {
+      font-family: $helvetica;
+      color: rgba(94,93,82,1);
+    }
+     table {
+        margin-bottom: 1.5em;
+        border-spacing: 0;
+        border: 1px solid;
+        margin: 0 auto;
+        width: 100%;
+     }
 
-		<!-- ======================= Start Page Title ===================== -->
-		<div class="page-title image-title" style="background-image:url({% static 'passenger/assets/img/banner.jpg' %});">
-			<div class="container">
-				<div class="page-title-wrap">
-				<h2>Booked Tickets</h2>
-				<p><a href="{% url 'passenger:index' %}" class="theme-cl">Home</a> | <span>Booked Tickets</span></p>
-				</div>
-			</div>
-		</div>
-		<!-- ======================= End Page Title ===================== -->
-
-		<!-- =========== Hire Guider =================== -->
-		<section class="gray-bg">
-			<div class="container">
-
-				<!-- Start all guider -->
-				<div class="row">
+     th {
+       background-color: rgba(29,150,178,1);
+      border: 1px solid rgba(29,150,178,1);
+      font-weight: normal;
+      text-align: center;
+      color: white;
+     }
+     td{
+        border-left: 1px solid  rgba(29,150,178,1);
+        border-bottom: 1px solid  rgba(29,150,178,1);
+        text-align: center;
+     }
+   </style>
+ </head>
+ <body>
+ <div class="row">
 						<!-- Single Guide -->
 						<div class="col-lg-4 col-md-6 col-sm-6">
 							<div class="guide-container">
@@ -83,9 +99,7 @@
 	<!--					end ticket -->
 				</div>
 				<!-- Start all guider -->
-
-
-			</div>
-		</section>
-		<!-- =========== End Hire Guider =================== -->
-{% endblock %}
+<!--   <p>Ticket No: {{object.code}}</p>-->
+<!--   <p></p>-->
+ </body>
+</html>
