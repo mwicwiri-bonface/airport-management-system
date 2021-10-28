@@ -244,6 +244,8 @@ def booking_payment(request, slug):
                 messages.info(request, "Mpesa code has already been used")
             else:
                 instance.save()
+                booking_obj.paid = True
+                booking_obj.save()
                 messages.success(request, 'Payment has been done successfully')
                 return redirect(reverse('passenger:success_page', kwargs={'slug': booking_obj.slug}))
     return render(request, 'passenger/payment.html', {'form': form, 'booking_obj': booking_obj})
