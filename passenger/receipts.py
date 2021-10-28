@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from weasyprint import HTML
 
@@ -8,7 +9,7 @@ from airport.models import Booking
 def download_ticket(request, slug):
     """Generate pdf."""
     # Model data
-    data = {'object': Booking.objects.get(id=slug)}
+    data = {'object': get_object_or_404(Booking, slug=slug)}
     # Rendered
     html_string = render_to_string('passenger/receipts/ticket-pdf.html', data)
     html = HTML(string=html_string)

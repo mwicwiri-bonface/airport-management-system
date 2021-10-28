@@ -74,6 +74,7 @@ class Booking(models.Model):
     code = models.CharField(max_length=20)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
     passenger = models.ForeignKey(Passenger, on_delete=models.CASCADE, null=True)
+    paid = models.BooleanField(default=False)
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
 
