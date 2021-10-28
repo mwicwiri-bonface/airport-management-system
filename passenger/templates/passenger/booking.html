@@ -62,9 +62,12 @@
 <!--													</div> 													-->
 												</div>
 												<div class="info-container_booking">
-													<a href="{% url 'passenger:payment' booking.slug %}" class="booking-success">Pay Now</a>
-													<a href="#" class="booking-detail">View Detail</a>
-													<span class="booking-cancel">Cancel Booking</span>
+													{% if booking.paid %}
+														<a href="#" class="booking-detail">View Detail</a>
+													{% else %}
+														<a href="{% url 'passenger:payment' booking.slug %}" class="booking-success">Pay Now</a>
+														<span class="booking-cancel">Cancel Booking</span>
+													{% endif %}
 												</div>
 											</div>
 											
