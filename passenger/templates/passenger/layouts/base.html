@@ -92,18 +92,18 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="{% static 'passenger/account/register.js' %}"></script>
 		<script src="{% static 'passenger/account/login.js' %}"></script>
+		{% for message in messages %}
 		<script>
-			let messages = "{{messages}}"
-			console.log(messages)
-			messages.each(function(index, message) {
-			  iziToast.message['tags']({
-				title: message['tags'],
+			let message = "{{message}}"
+			let message_tag = "{{message.tag}}"
+			console.log(message)
+			  iziToast.message_tag({
+				title: message_tag,
 				message: message,
 				position: 'topRight'
 			  });
-			  console.log(message)
-			});
 		</script>
+		{% endfor %}
 
     </body>
 
