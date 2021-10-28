@@ -35,7 +35,7 @@ class FinanceFeedback(Feedback):
 
 
 class Payment(models.Model):
-    slug = AutoSlugField(populate_from='name')
+    slug = AutoSlugField(populate_from='code')
     code = models.CharField(max_length=20)
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
     passenger = models.ForeignKey(Passenger, on_delete=models.CASCADE, null=True)
