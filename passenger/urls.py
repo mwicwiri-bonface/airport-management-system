@@ -3,7 +3,7 @@ from django.urls import path
 from .receipts import download_ticket
 from .views import IndexView, AboutView, ContactView, ProfileView, PassengerLoginView, \
     PassengerSignUpView, VerifyEmail, log_out, booking_payment, booking, faq, FlightsListView, change_password, \
-    success_page, receipts, FeedbackView, booking_api
+    success_page, receipts, FeedbackView, booking_api, cancel_booking
 
 urlpatterns = [
     path('logout/', log_out, name="logout"),
@@ -15,6 +15,7 @@ urlpatterns = [
     path('contact/', ContactView.as_view(), name="contact"),
     path('about/', AboutView.as_view(), name="about_us"),
     path('download_ticket/<slug>/', download_ticket, name="download_ticket"),
+    path('cancel_booking/<slug>/', cancel_booking, name="cancel_booking"),
     path('payment/<slug>/', booking_payment, name="payment"),
     path('booking_api/', booking_api, name="booking_api"),
     path('booking/', booking, name="booking"),

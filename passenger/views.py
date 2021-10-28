@@ -226,6 +226,14 @@ def booking(request):
 
 
 @passenger_required
+def cancel_booking(request, slug):
+    booking_obj = get_object_or_404(Booking, slug=slug)
+    booking_obj.delete()
+    messages.info(request, "Booking has been cancelled.")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@passenger_required
 def booking_payment(request, slug):
     booking_obj = get_object_or_404(Booking, slug=slug)
     form = PaymentForm()
