@@ -19,7 +19,7 @@ urlpatterns = [
     path('faq/', faq, name="faq"),
     path('flights/', FlightsListView.as_view(), name="flights"),
     path('change_password/', change_password, name="change_password"),
-    path('success_page/', success_page, name="success_page"),
+    path('success_page/<slug>/', success_page, name="success_page"),
     path('receipts/', receipts, name="receipts"),
     path('', IndexView.as_view(), name="index"),
 ]

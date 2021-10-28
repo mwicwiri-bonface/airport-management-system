@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_text, force_bytes
@@ -244,6 +245,7 @@ def booking_payment(request, slug):
             else:
                 instance.save()
                 messages.success(request, 'Payment has been done successfully')
+                return redirect(reverse('passenger:success_page', kwargs={'slug': booking_obj.slug}))
     return render(request, 'passenger/payment.html', {'form': form, 'booking_obj': booking_obj})
 
 
@@ -260,8 +262,9 @@ def change_password(request):
 
 
 @passenger_required
-def success_page(request):
-    return render(request, 'passenger/success-page.html')
+def success_page(request, slug):
+    booking_obj = get_object_or_404(Booking, slug=slug)
+    return render(request, 'passenger/success-page.html', {'booking_obj': booking_obj})
 
 
 def faq(request):
