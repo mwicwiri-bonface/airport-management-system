@@ -1,105 +1,12 @@
 <html>
  <head>
-   <title>Test</title>
-   <style>
-     h1 {
-        margin-bottom: 1em;
-        font-size: 1em;
-        font-weight: bold;
-        text-align: center;
-     }
-    body {
-      font-family: $helvetica;
-      color: rgba(94,93,82,1);
-    }
-     table {
-        margin-bottom: 1.5em;
-        border-spacing: 0;
-        border: 1px solid;
-        margin: 0 auto;
-        width: 100%;
-     }
-
-     th {
-       background-color: rgba(29,150,178,1);
-      border: 1px solid rgba(29,150,178,1);
-      font-weight: normal;
-      text-align: center;
-      color: white;
-     }
-     td{
-        border-left: 1px solid  rgba(29,150,178,1);
-        border-bottom: 1px solid  rgba(29,150,178,1);
-        text-align: center;
-     }
-   </style>
+   <title>Ticket {{object.code}}</title>
  </head>
  <body>
- <div class="row">
-						<!-- Single Guide -->
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="guide-container">
-								<div class="guide-container-box">
-									<div class="fguide-thumb">
-										<img src="{{object.passenger.passengerprofile.image.url}}" class="img-responsive" alt="">
-										<p class="padd-15 text-center">From {{object.flight.route.source}}, to {{object.flight.route.destination}}</p>
-									</div>
-									<div class="fguide-detail">
-										<h4>{{object.passenger.get_full_name}}</h4>
-										<ul class="extra-service">
-											<li>
-												<div class="icon-box-icon-block">
-													<a href="#">
-														<div class="icon-box-round">
-															<i class="ti-agenda"></i>
-														</div>
-														<div class="icon-box-text">
-															<strong>Ticket No</strong>
-															{{object.code}}
-														</div>
-													</a>
-												</div>
-											</li>
-
-											<li>
-												<div class="icon-box-icon-block">
-													<a href="#">
-														<div class="icon-box-round">
-															<i class="ti-wallet"></i>
-														</div>
-														<div class="icon-box-text">
-															<strong>Cost</strong>
-															{{object.flight.price}}
-														</div>
-													</a>
-												</div>
-											</li>
-
-											<li>
-												<div class="icon-box-icon-block">
-													<a href="#">
-														<div class="icon-box-round">
-															<i class="ti-calendar"></i>
-														</div>
-														<div class="icon-box-text">
-															<strong>Flight Date: </strong>
-															{{object.flight.departure}}
-														</div>
-													</a>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="guide-container-links">
-									<a href="{% url 'passenger:download_ticket' object.slug %}" class="btn btn-default"><i class="ti-export mrg-r-5"></i>Download</a>
-								</div>
-							</div>
-						</div>
-	<!--					end ticket -->
-				</div>
-				<!-- Start all guider -->
-<!--   <p>Ticket No: {{object.code}}</p>-->
-<!--   <p></p>-->
+    <h4>{{object.passenger.get_full_name}}</h4>
+    <p>From {{object.flight.route.source}}, to {{object.flight.route.destination}}</p>
+    <p><strong>Ticket No: </strong>{{object.code}}</p>
+    <p><strong>Cost: </strong>{{object.flight.price}}</p>
+    <p><strong>Flight Date: </strong>{{object.flight.departure}}</p>
  </body>
 </html>
