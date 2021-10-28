@@ -26,7 +26,7 @@
 												<p><strong>Flight :</strong> from {{booking_obj.flight.route.source}}, to {{booking_obj.flight.route.destination}}</p>
 												<p><strong>Date :</strong>{{booking_obj.created}}</p>
 												<p>
-													<label>Mpesa</label>
+													<label>Mpesa Code</label>
 													{% render_field form.mpesa class+="form-control" %}
 													<div class="text-danger">{{form.errors.mpesa}}</div>
 												</p>
