@@ -41,7 +41,7 @@ class Payment(models.Model):
     passenger = models.ForeignKey(Passenger, on_delete=models.CASCADE, null=True)
     amount = MoneyField(max_digits=14, decimal_places=2, default_currency='KES')
     mpesa = models.CharField(max_length=100, help_text="This is the M-Pesa Code for the transaction")
-    finance = models.ForeignKey(Finance, on_delete=models.CASCADE, help_text="Finance officer")
+    finance = models.ForeignKey(Finance, on_delete=models.CASCADE, help_text="Finance officer", null=True)
     is_confirmed = models.BooleanField(default=False)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
