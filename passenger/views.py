@@ -191,7 +191,6 @@ class ProfileView(View):
 
 class FlightsListView(ListView):
     template_name = "passenger/flights.html"
-    model = Flight
     paginate_by = 5
 
     def get_queryset(self):
