@@ -7,6 +7,7 @@ $(document).ready(function() {
                     type: $(this).attr('method'),
                     url: $(this).attr('action'),
                     beforeSend: function() {
+                        $("#form-errors").html('');
                         $("#error-username").html('');
                         $("#error-password").html('');
                     },
@@ -29,6 +30,9 @@ $(document).ready(function() {
                           setTimeout(function () {
                          location.reload()
                         }, 5200);
+                        }
+                        if(response['form']['__all__']) {
+                          $("#form-errors").html(response['form']['__all__']);
                         }
                         if(response['form']['username']) {
                            $("#error-username").html(response['form']['username']);
