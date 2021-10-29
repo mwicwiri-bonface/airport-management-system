@@ -103,10 +103,8 @@ class VerifyEmail(View):
                 messages.info(self.request, "You've successfully verified your email. use your email to login")
             return redirect('passenger:login')
         else:
-            data = {
-                'message': 'The confirmation link was invalid, possibly because it has already been used.'
-            }
-            return JsonResponse(data)
+            return JsonResponse({'message': 'The confirmation link was invalid, '
+                                            'possibly because it has already been used.'})
 
 
 class IndexView(View):
