@@ -38,6 +38,11 @@ class PassengerLoginView(LoginView):
         data = {'message': 'User has logged in successfully'}
         return JsonResponse(data)
 
+    def form_invalid(self, form):
+        print(form)
+        messages.error(self.request, form.non_field_errors)
+        return JsonResponse({'form': form.errors}, safe=False)
+
 
 class PassengerSignUpView(CreateView):
     form_class = PassengerSignUpForm

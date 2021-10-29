@@ -30,6 +30,13 @@ $(document).ready(function() {
                          location.reload()
                         }, 5200);
                         }
+                        if(response['form']['__all__']) {
+                         iziToast.error({
+                            title: 'Not Logged in:',
+                            message: response['form']['__all__'][0],
+                            position: 'topRight'
+                          });
+                        }
                         if(response['form']['username']) {
                            $("#error-username").html(response['form']['username']);
                         }
