@@ -30,6 +30,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('finance/', include(('finance.urls', 'finance'), namespace="finance")),
+    path('staff/', include(('flight_staff.urls', 'flight_staff'), namespace="staff")),
     path('', include(('passenger.urls', 'passenger'), namespace="passenger")),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
