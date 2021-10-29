@@ -199,10 +199,10 @@ class FlightsListView(ListView):
         city_from = self.request.POST.get('city_from')
         city_to = self.request.POST.get('city_to')
         if city_from == city_to:
-            messages.info(self.request, f"sorry you can't move from {city_from} to {city_to}")
+            messages.info(self.request, f"Sorry, you can't move within same city.")
             return redirect('passenger:index')
         else:
-            object_list = self.get_queryset().filter(route__source=city_from, route__destination=city_to)
+            object_list = self.get_queryset().filter(route__source__id=city_from, route__destination__id=city_to)
         return render(self.request, self.template_name, {'object_list': object_list})
 
 
