@@ -13,7 +13,7 @@ class HomeView(View):
 
 
 class LoginView(View):
-    template_name = "finance/auth/sign-in.html"
+    template_name = "finance/accounts/login.html"
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)
@@ -23,7 +23,7 @@ class LoginView(View):
 
 
 class SignUpView(View):
-    template_name = "finance/auth/sign-up.html"
+    template_name = "finance/accounts/register.html"
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)
@@ -43,7 +43,7 @@ class FormView(View):
 
 
 class ContactView(View):
-    template_name = "finance/contact.html"
+    template_name = "finance/app-contact.html"
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)
@@ -53,7 +53,7 @@ class ContactView(View):
 
 
 class TableView(View):
-    template_name = "finance/jquery-datatable.html"
+    template_name = "finance/project-lists.html"
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)

@@ -1,0 +1,225 @@
+{% extends 'finance/layouts/base.html' %}
+{% load static %}
+{% block title %} Page search {% endblock %}
+{% block styles %}
+
+    <!-- Bootstrap Core and vandor -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css' %}">
+
+    <!-- Core css -->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/theme1.css' %}"/>
+{% endblock %}
+{% block content %}
+        <div class="section-body">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center">
+                    <ul class="nav nav-tabs page-header-tab">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#todo-list">ToDo List</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#todo-add">Add Todo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section-body mt-3">
+            <div class="container-fluid">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="todo-list" role="tabpanel">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive todo_list">
+                                    <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="w150 text-right">Due</th>
+                                                <th class="w100">Priority</th>
+                                                <th class="w80"><i class="icon-user"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked>
+                                                        <span class="custom-control-label">Report Panel Usag</span>
+                                                    </label>
+                                                </td>
+                                                <td class="text-right">Feb 12-2019</td>
+                                                <td><span class="tag tag-danger ml-0 mr-0">HIGH</span></td>
+                                                <td>
+                                                    <span class="avatar avatar-pink"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">NG</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                        <span class="custom-control-label">Report Panel Usag</span>
+                                                    </label>
+                                                </td>
+                                                <td class="text-right">Feb 18-2019</td>
+                                                <td><span class="tag tag-warning ml-0 mr-0">MED</span></td>
+                                                <td>
+                                                    <img src="{% static 'assets/images/xs/avatar1.jpg' %}" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked>
+                                                        <span class="custom-control-label">New logo design for Angular Admin</span>
+                                                    </label>
+                                                </td>
+                                                <td class="text-right">March 02-2019</td>
+                                                <td><span class="tag tag-success ml-0 mr-0">High</span></td>
+                                                <td>
+                                                    <img src="{% static 'assets/images/xs/avatar2.jpg' %}" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked>
+                                                        <span class="custom-control-label">Report Panel Usag</span>
+                                                    </label>
+                                                </td>
+                                                <td class="text-right">Feb 12-2019</td>
+                                                <td><span class="tag tag-danger ml-0 mr-0">HIGH</span></td>
+                                                <td>
+                                                    <span class="avatar avatar-pink"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">NG</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                        <span class="custom-control-label">Report Panel Usag</span>
+                                                    </label>
+                                                </td>
+                                                <td class="text-right">Feb 18-2019</td>
+                                                <td><span class="tag tag-warning ml-0 mr-0">MED</span></td>
+                                                <td>
+                                                    <img src="{% static 'assets/images/xs/avatar3.jpg' %}" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked>
+                                                        <span class="custom-control-label">New logo design for Angular Admin</span>
+                                                    </label>
+                                                </td>
+                                                <td class="text-right">March 02-2019</td>
+                                                <td><span class="tag tag-success ml-0 mr-0">High</span></td>
+                                                <td>
+                                                    <span class="avatar avatar-blue"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">NG</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                        <span class="custom-control-label">Design PSD files for Angular Admin</span>
+                                                    </label>
+                                                </td>
+                                                <td class="text-right">March 20-2019</td>
+                                                <td><span class="tag tag-warning ml-0 mr-0">MED</span></td>
+                                                <td>
+                                                    <img src="{% static 'assets/images/xs/avatar4.jpg' %}" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+                                                        <span class="custom-control-label">Design PSD files for Angular Admin</span>
+                                                    </label>
+                                                </td>
+                                                <td class="text-right">March 20-2019</td>
+                                                <td><span class="tag tag-warning ml-0 mr-0">MED</span></td>
+                                                <td>
+                                                    <img src="{% static 'assets/images/xs/avatar5.jpg' %}" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="avatar" data-original-title="Avatar Name">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="todo-add" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Todo</h3>
+                                <div class="card-options ">
+                                    <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                                    <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                </div>
+                            </div>
+                            <form class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Todo Name <span class="text-danger">*</span></label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Priority <span class="text-danger">*</span></label>
+                                    <div class="col-md-7">
+                                        <select class="form-control show-tick">
+                                            <option>Select</option>
+                                            <option>High</option>
+                                            <option>Medium</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Select Team <span class="text-danger">*</span></label>
+                                    <div class="col-md-7">
+                                        <select class="form-control show-tick">
+                                            <option>Select</option>
+                                            <option>John Smith</option>
+                                            <option>Claire Peters</option>
+                                            <option>Allen Collins</option>
+                                            <option>Cory Carter</option>
+                                            <option>Rochelle Barton</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Description <span class="text-danger">*</span></label>
+                                    <div class="col-md-7">
+                                        <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Due <span class="text-danger">*</span></label>
+                                    <div class="col-md-7">
+                                        <div class="input-daterange input-group" data-provide="datepicker">
+                                            <input type="text" class="form-control" name="start">
+                                            <span class="input-group-addon"> to </span>
+                                            <input type="text" class="form-control" name="end">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label"></label>
+                                    <div class="col-md-7">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock%}
+{% block script %}
+    <script src="{% static 'assets/bundles/lib.vendor.bundle.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/core.js' %}"></script>
+{% endblock %}
