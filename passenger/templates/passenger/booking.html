@@ -74,6 +74,53 @@
 										</div>
 <!--										end booking -->
 										{% endfor %}
+										{% for booking in paid_bookings %}
+										<!-- Single booking -->
+										<div class="col-md-12 ">
+											<div class="dasboard-prop-listing ">
+<!--												<div class="blog_listing_image book_image">-->
+<!--												   <a href="#">-->
+<!--														<img src="{% static 'passenger/assets/img/hotel/hotel-1.jpg' %}" class="img-responsive" alt="">-->
+<!--													</a>-->
+<!--												</div>-->
+												<div class="prop-info">
+													<h4 class="listing_title_book">
+														From {{booking.flight.route.source}} to, {{booking.flight.route.destination}}
+													</h4>
+
+<!--													<div class="user_dashboard_listed">-->
+<!--														<strong>Period:</strong>  10-12-2018 <strong>to</strong> 19-12-2018 -->
+<!--													</div>-->
+
+													<div class="user_dashboard_listed">
+														<strong>Date:</strong> {{booking.created}}
+													</div>
+
+													<div class="user_dashboard_listed">
+														<strong>Booking No: </strong> {{booking.code}}
+													</div>
+
+<!--													<div class="user_dashboard_listed">-->
+<!--														<strong>Adults:  </strong> 4th  -->
+<!--													</div>-->
+<!--													-->
+<!--													<div class="user_dashboard_listed">-->
+<!--														<strong>Children:  </strong> 2th  -->
+<!--													</div> 													-->
+												</div>
+												<div class="info-container_booking">
+													{% if booking.paid %}
+														<a href="#" class="booking-detail">View Detail</a>
+													{% else %}
+														<a href="{% url 'passenger:payment' booking.slug %}" class="booking-success">Pay Now</a>
+														<a href="{% url 'passenger:cancel_booking' booking.slug %}" class="booking-cancel">Cancel Booking</a>
+													{% endif %}
+												</div>
+											</div>
+
+										</div>
+<!--										end booking -->
+										{% endfor %}
 									</div>
 								</div>
 							</div>

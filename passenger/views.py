@@ -214,8 +214,10 @@ def booking_api(request):
 
 @passenger_required
 def booking(request):
-    bookings = Booking.objects.filter(passenger=request.user.passenger).order_by('-created')
-    return render(request, 'passenger/booking.html', {'bookings': bookings})
+    bookings = Booking.objects.filter(passenger=request.user.passenger, flight__departure__gte=timezone.now(),
+                                      paid=False).order_by('-created')
+    paid_bookings = Booking.objects.filter(passenger=request.user.passenger, paid=True).order_by('-created')
+    return render(request, 'passenger/booking.html', {'bookings': bookings, 'paid_bookings': paid_bookings})
 
 
 @passenger_required
