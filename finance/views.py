@@ -33,7 +33,7 @@ class SignUpView(View):
 
 
 class FormView(View):
-    template_name = "finance/basic-form-elements.html"
+    template_name = "finance/page-profile.html"
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)
@@ -53,7 +53,7 @@ class ContactView(View):
 
 
 class TableView(View):
-    template_name = "finance/project-lists.html"
+    template_name = "finance/project-list.html"
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)

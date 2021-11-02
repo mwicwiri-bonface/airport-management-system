@@ -5,10 +5,11 @@
             <ul class="metismenu">
                 <li class="g_heading">Project</li>
                 <li class="active"><a href="{% url 'finance:index' %}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-                <li><a href="project-list.html"><i class="fa fa-list-ol"></i><span>Project list</span></a></li>
-                <li><a href="project-taskboard.html"><i class="fa fa-calendar-check-o"></i><span>Taskboard</span></a></li>
-                <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>Ticket List</span></a></li>
-                <li><a href="project-ticket-details.html"><i class="icon-tag"></i><span>Ticket Details</span></a></li>
+                <li><a href="{% url 'finance:table' %}"><i class="fa fa-list-ol"></i><span>table</span></a></li>
+                <li><a href="{% url 'finance:contact' %}"><i class="fa fa-calendar-check-o"></i><span>contact</span></a></li>
+                <li><a href="{% url 'finance:form' %}"><i class="fa fa-list-ul"></i><span>form</span></a></li>
+                <li><a href="{% url 'finance:sign_up' %}"><i class="fa fa-lock"></i><span>sign_up</span></a></li>
+                <li><a href="{% url 'finance:login' %}"><i class="fa fa-unlock"></i><span>login</span></a></li>
             </ul>
         </nav>
     </div>
