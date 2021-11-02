@@ -103,8 +103,8 @@ class VerifyEmail(View):
                 messages.info(self.request, "You've successfully verified your email. use your email to login")
             return redirect('passenger:login')
         else:
-            return JsonResponse({'message': 'The confirmation link was invalid, '
-                                            'possibly because it has already been used.'})
+            data = {'message': 'The confirmation link was invalid, possibly because it has already been used.'}
+            return JsonResponse(data)
 
 
 class IndexView(View):
@@ -115,9 +115,6 @@ class IndexView(View):
         flight = Flight.objects.filter(departure__gte=timezone.now())
         return render(self.request, self.template_name, {'place': place, 'flights': flight})
 
-    def post(self, *args, **kwargs):
-        pass
-
 
 class AboutView(View):
     template_name = 'passenger/about-us.html'
@@ -125,18 +122,12 @@ class AboutView(View):
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)
 
-    def post(self, *args, **kwargs):
-        pass
-
 
 class ContactView(View):
     template_name = "passenger/contact.html"
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name)
-
-    def post(self, *args, **kwargs):
-        pass
 
 
 class FeedbackView(CreateView):
