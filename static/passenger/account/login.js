@@ -7,7 +7,7 @@ $(document).ready(function() {
                     type: $(this).attr('method'),
                     url: $(this).attr('action'),
                     beforeSend: function() {
-                        $("#form-errors").html('');  
+                        $("#form-errors").html('');
                         $("#error-username").html('');
                         $("#error-password").html('');
                     },
