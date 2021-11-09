@@ -9,3 +9,5 @@
 /security/migrations/
 /core/settings.ini
 /security/__pycache__/*
+/core/settings/local.py
+/core/settings.ini
