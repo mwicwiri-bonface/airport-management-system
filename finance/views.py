@@ -1,5 +1,10 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
+from django.shortcuts import render, redirect
 from django.views import View
+
+from finance.forms import FinanceAuthenticationForm
 
 
 class HomeView(View):
@@ -12,14 +17,14 @@ class HomeView(View):
         pass
 
 
-class LoginView(View):
+class FinanceLoginView(LoginView):
     template_name = "finance/accounts/login.html"
+    authentication_form = FinanceAuthenticationForm
 
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-    def post(self, *args, **kwargs):
-        pass
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        messages.success(self.request, "You've logged in successfully.")
+        return redirect("finance:index")
 
 
 class SignUpView(View):
@@ -60,4 +65,3 @@ class TableView(View):
 
     def post(self, *args, **kwargs):
         pass
-

@@ -43,4 +43,5 @@ class PassengerAuthenticationForm(AuthenticationForm):
         super().clean()
         if self.user_cache is not None and not self.user_cache.is_passenger:
             logout(self.request)
-            raise forms.ValidationError('Invalid username or password', code='invalid login')
+            raise forms.ValidationError("Sorry you can't login here. Your account is not a passenger account.",
+                                        code='invalid login')
