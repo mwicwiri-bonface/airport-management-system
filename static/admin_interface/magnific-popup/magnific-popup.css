@@ -226,12 +226,12 @@ button::-moz-focus-inner {
   .mfp-iframe-holder .mfp-close {
     top: -40px; }
 
-.mfp-iframe-scpassenger {
+.mfp-iframe-scaler {
   width: 100%;
   height: 0;
   overflow: hidden;
   padding-top: 56.25%; }
-  .mfp-iframe-scpassenger iframe {
+  .mfp-iframe-scaler iframe {
     position: absolute;
     display: block;
     top: 0;

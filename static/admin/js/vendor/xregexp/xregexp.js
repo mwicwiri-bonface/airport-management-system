@@ -3438,7 +3438,7 @@ XRegExp._pad4 = pad4;
  *     since the token can be skipped at any positions where this character doesn't appear.
  * @example
  *
- * // Basic usage: Add \a for the passengerT control code
+ * // Basic usage: Add \a for the ALERT control code
  * XRegExp.addToken(
  *   /\\a/,
  *   function() {return '\\x07';},
