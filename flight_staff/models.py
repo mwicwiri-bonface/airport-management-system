@@ -7,7 +7,13 @@ from user.models import User, Profile, Feedback
 
 
 class FlightStaff(User):
-    pass
+    class UserType(models.TextChoices):
+        PILOT = 'pilot', "Pilot"
+        SECURITY = 'security', "Security"
+        MAINTENANCE = 'maintenance', "Maintenance"
+        ATTENDANT = 'attendant', "Attendant"
+
+    user_type = models.CharField(max_length=250, choices=UserType.choices, default=UserType.ATTENDANT)
 
     class Meta:
         verbose_name = 'Flight Staff'
@@ -36,7 +42,3 @@ def flight_staff_profile(sender, instance, created, **kwargs):
     if created:
         FlightStaffProfile.objects.create(user=instance)
         instance.flightstaffprofile.save()
-
-
-
-
