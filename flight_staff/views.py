@@ -7,7 +7,8 @@ from django.views import View
 from django.views.generic import CreateView
 
 from flight_staff.forms import FlightStaffAuthenticationForm, FlightStaffSignUpForm, FlightStaffProfileForm, \
-    FlightStaffForm
+    FlightStaffForm, FlightStaffFeedbackForm
+from flight_staff.models import FlightStaffFeedback
 
 
 class FlightStaffLoginView(LoginView):
@@ -82,6 +83,31 @@ class ChangePasswordView(View):
         else:
             return render(request, self.template_name, {"form": form})
         return redirect("flight_staff:change-password")
+
+
+class FeedBackView(View):
+    template_name = "staff/feedback.html"
+
+    def get(self, *arg, **kwargs):
+        request = self.request
+        form = FlightStaffFeedbackForm()
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, *args, **kwargs):
+        request = self.request
+        form = FlightStaffFeedbackForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user.flightstaff
+            if FlightStaffFeedback.objects.filter(user=instance.user, subject=instance.subject, message=instance.message
+                                                  ).exists():
+                messages.info(request, f"Sorry, {instance.subject} has already been sent.")
+            else:
+                instance.save()
+                messages.success(request, 'feedback has been sent successfully.')
+        else:
+            return render(request, self.template_name, {"form": form})
+        return redirect("flight_staff:feedback")
 
 
 class ButtonsView(View):

@@ -33,7 +33,7 @@ class FlightStaffRequiredMiddleware(object):
     accessible by users who are clients only. Copy any paths defined in urls.py
     that are supposed to be the client view only and append to the CLIENT_REQUIRED_URLS list.
     """
-    FLIGHT_STAFF_REQUIRED_URLS = ['staff/', "staff/change-password/", "staff/profile/"]
+    FLIGHT_STAFF_REQUIRED_URLS = ['staff/', "staff/change-password/", "staff/profile/", "staff/feedback/"]
 
     def __init__(self, get_response):
         self.get_response = get_response

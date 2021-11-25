@@ -23,7 +23,7 @@ class FinanceSignUpForm(UserCreationForm):
 class FinanceProfileForm(ModelForm):
     class Meta:
         model = FinanceProfile
-        fields = ['gender', 'phone_number', 'country']
+        fields = ['image', 'gender', 'phone_number', 'country']
 
 
 class FinanceForm(ModelForm):
@@ -47,7 +47,7 @@ class PaymentForm(ModelForm):
 class FinanceFeedbackForm(ModelForm):
     class Meta:
         model = FinanceFeedback
-        exclude = ['user', ]
+        fields = ['subject', 'message']
 
 
 class FinanceAuthenticationForm(AuthenticationForm):

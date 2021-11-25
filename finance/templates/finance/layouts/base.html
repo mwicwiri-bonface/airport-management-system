@@ -19,6 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{% static 'staff/css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
 </head>
 
@@ -27,20 +29,20 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        {% include 'staff/includes/side-bar.html' %}
+        {% include 'finance/includes/side-bar.html' %}
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
-                {% include 'staff/includes/top-bar.html' %}
+                {% include 'finance/includes/top-bar.html' %}
                 {% block content %}{% endblock %}
 
             </div>
             <!-- End of Main Content -->
 
-            {% include 'staff/includes/footer.html' %}
+            {% include 'finance/includes/footer.html' %}
 
         </div>
         <!-- End of Content Wrapper -->
@@ -53,7 +55,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    {% include 'staff/includes/logout-modal.html' %}
+    {% include 'finance/includes/logout-modal.html' %}
 
     {% block scripts %}
         <!-- Bootstrap core JavaScript-->
@@ -73,6 +75,30 @@
         <script src="{% static 'staff/js/demo/chart-area-demo.js' %}"></script>
         <script src="{% static 'staff/js/demo/chart-pie-demo.js' %}"></script>
     {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {% for message in messages %}
+		<script>
+			let message = "{{message}}"
+			let message_tag = "{{message.tags}}"
+			console.log(message)
+			if (message_tag === "success" ){
+			  iziToast.success({
+				title: "Success",
+				message: message,
+				position: 'topRight'
+			  });
+			 }
+			if (message_tag === "info" ){
+			  iziToast.info({
+				title: "Info",
+				message: message,
+				position: 'topRight'
+			  });
+			 }
+		</script>
+    {% endfor %}
 
 </body>
 

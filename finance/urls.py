@@ -1,13 +1,17 @@
 from django.urls import path
 
-from finance.views import HomeView, SignUpView, FormView, ContactView, TableView, FinanceLoginView
+from finance.views import FormView, ContactView, TableView, FinanceLoginView, LogoutView, \
+    FeedBackView, ChangePasswordView, ProfileView, FinanceSignUpView, HomeView
+from flight_staff.views import TablesView
 
 urlpatterns = [
-    path('table/', TableView.as_view(), name="table"),
-    path('contact/', ContactView.as_view(), name="contact"),
-    path('form/', FormView.as_view(), name="form"),
-    path('sign-up/', SignUpView.as_view(), name="sign_up"),
     path('login/', FinanceLoginView.as_view(), name="login"),
+    path('register/', FinanceSignUpView.as_view(), name="register"),
+    path('tables/', TablesView.as_view(), name="tables"),
+    path('profile/', ProfileView.as_view(), name="profile"),
+    path('change-password/', ChangePasswordView.as_view(), name="change-password"),
+    path('feedback/', FeedBackView.as_view(), name="feedback"),
+    path('logout/', LogoutView.as_view(), name="logout"),
     path('', HomeView.as_view(), name="index"),
 
 ]

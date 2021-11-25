@@ -12,7 +12,7 @@ class FinanceAdmin(admin.ModelAdmin):
     actions = ['make_active', 'make_inactive']
 
     def make_active(self, request, queryset):
-        updated = queryset.update(is_active=True, is_archived=False, is_approved=True)
+        updated = queryset.update(is_active=True, is_archived=False, is_verified=True)
         self.message_user(request, ngettext(
             '%d Finance manager has successfully been marked as active.',
             '%d Finance managers have been successfully marked as active.',
@@ -22,7 +22,7 @@ class FinanceAdmin(admin.ModelAdmin):
     make_active.short_description = "Approve Finance manager"
 
     def make_inactive(self, request, queryset):
-        updated = queryset.update(is_archived=True)
+        updated = queryset.update(is_archived=True, is_active=False)
         self.message_user(request, ngettext(
             '%d Finance manager has been archived successfully.',
             '%d Finance managers have been archived successfully.',
