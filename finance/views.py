@@ -110,36 +110,6 @@ class FeedBackView(View):
         return redirect("finance:feedback")
 
 
-class FormView(View):
-    template_name = "finance/page-profile.html"
-
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-    def post(self, *args, **kwargs):
-        pass
-
-
-class ContactView(View):
-    template_name = "finance/app-contact.html"
-
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-    def post(self, *args, **kwargs):
-        pass
-
-
-class TableView(View):
-    template_name = "finance/project-list.html"
-
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-    def post(self, *args, **kwargs):
-        pass
-
-
 class LogoutView(View):
     def get(self, *args, **kwargs):
         logout(self.request)
