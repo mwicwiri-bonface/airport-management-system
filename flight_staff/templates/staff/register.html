@@ -1,5 +1,6 @@
 {% extends 'staff/layouts/base-auth.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block title %}{% endblock %}
 {% block content %}
 
@@ -13,48 +14,57 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" method="post" action=".">
+                                {% csrf_token %}
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
+                                        {% render_field form.first_name class+="form-control form-control-user" placeholder="first name" %}
+                                        <div class="text-danger">{{form.errors.first_name}}</div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                        {% render_field form.last_name class+="form-control form-control-user" placeholder="last name" %}
+                                        <div class="text-danger">{{form.errors.last_name}}</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        {% render_field form.email class+="form-control form-control-user" placeholder="email" %}
+                                        <div class="text-danger">{{form.errors.email}}</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {% render_field form.username class+="form-control form-control-user" placeholder="username" %}
+                                        <div class="text-danger">{{form.errors.username}}</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
+                                    <select name="user_type" id="id_user_type" class="form-control">
+                                        <option selected disabled> Select user type</option>
+                                        {% for type in form.user_type %}
+                                            {{type}}
+                                        {% endfor %}
+                                    </select>
+                                    <div class="text-danger">{{form.errors.user_type}}</div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                        {% render_field form.password1 class+="form-control form-control-user" placeholder="password" %}
+                                        <div class="text-danger">{{form.errors.password1}}</div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        {% render_field form.password2 class+="form-control form-control-user" placeholder="confirm password" %}
+                                        <div class="text-danger">{{form.errors.password2}}</div>
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                <button class="btn btn-primary btn-user btn-block" type="submit">
                                     Register Account
-                                </a>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
+                                </button>
                             </form>
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="{% url 'flight_staff:login' %}">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

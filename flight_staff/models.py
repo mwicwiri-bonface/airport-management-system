@@ -1,16 +1,14 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-from airport.models import Plane
+from django.utils.translation import gettext_lazy as _
+from airport.models import Plane, Booking
 from user.models import User, Profile, Feedback
 
 
 class FlightStaff(User):
     class UserType(models.TextChoices):
         PILOT = 'pilot', "Pilot"
-        SECURITY = 'security', "Security"
-        MAINTENANCE = 'maintenance', "Maintenance"
         ATTENDANT = 'attendant', "Attendant"
 
     user_type = models.CharField(max_length=250, choices=UserType.choices, default=UserType.ATTENDANT)
@@ -35,6 +33,14 @@ class FlightStaffFeedback(Feedback):
     class Meta:
         verbose_name = 'Flight Staff Feedback'
         verbose_name_plural = 'Flight Staff Feedback'
+
+
+class Check(models.Model):
+    status = models.BooleanField(default=False)
+    attendant = models.ForeignKey(FlightStaff, on_delete=models.CASCADE, null=True)
+    ticket = models.ForeignKey(Booking, on_delete=models.CASCADE, null=True)
+    created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
+    updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
 
 
 @receiver(post_save, sender=FlightStaff)

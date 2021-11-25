@@ -1,12 +1,41 @@
 from django.contrib import admin, messages
 from django.utils.translation import ngettext
-from .models import User, Profile, Feedback
+from .models import Profile, Feedback
+from django.contrib.auth import get_user_model  # can also do from.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from .forms import UserAdminCreationForm, UserAdminChangeForm
+
+User = get_user_model()
 
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'email', 'username')
+class UserAdmin(BaseUserAdmin):
+    list_display = ('username', 'first_name', 'last_name', 'email')
     search_fields = ('first_name', 'last_name', 'email', 'username',)
-    list_filter = ('is_passenger', 'is_security', 'is_pilot', 'is_attendant', 'is_maintenance', 'is_finance')
+    list_filter = ('is_passenger', 'is_flight_staff', 'is_finance')
+    ordering = ['username']
+    filter_horizontal = []
+
+    form = UserAdminChangeForm  # for updating user in admin
+    add_form = UserAdminCreationForm  # for creating user in admin
+
+    fieldsets = (
+        (None, {'fields': ()}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'username', 'password')}),
+        # if you have any personal info fields e.g. names, include them as strings in the empty tuple.
+        ('verification',
+         {'fields': ('is_verified',)}),
+        ('Permissions',
+         {'fields': ('is_active', 'is_passenger', 'is_pilot', 'is_attendant', 'is_finance')})
+    )
+    '''
+    add_fieldsets is not a standard ModelAdmin attribute. UserAdmin overides get_fieldsets
+    to use this attribute when creating a user. '''
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'email', 'password1', 'password2')
+        }),
+    )
 
     actions = ['make_active', 'make_inactive']
 

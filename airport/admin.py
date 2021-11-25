@@ -2,7 +2,7 @@ from admin_interface.models import Theme
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
-from airport.models import Place, Route, Airline, Check, Plane, Flight, Booking
+from airport.models import Place, Route, Airline, Plane, Flight, Booking
 
 
 class PlaceAdmin(admin.ModelAdmin):
@@ -101,6 +101,5 @@ admin.site.register(Route, RouteAdmin)
 admin.site.register(Plane, PlaneAdmin)
 admin.site.register(Flight, FlightAdmin)
 admin.site.register(Booking, BookingAdmin)
-admin.site.register(Check)
 admin.site.unregister(Group)
 admin.site.unregister(Theme)

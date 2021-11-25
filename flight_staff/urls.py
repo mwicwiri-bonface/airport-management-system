@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import IndexView, ButtonsView, CardsView, Error404View, BlankView, ChartsView, ForgotPasswordView, \
-    LoginView, RegisterView, TablesView
+    TablesView, FlightStaffLoginView, FlightStaffSignUpView, LogoutView, ProfileView, ChangePasswordView
 
 urlpatterns = [
     path('', IndexView.as_view(), name="index"),
@@ -11,7 +11,10 @@ urlpatterns = [
     path('blank/', BlankView.as_view(), name="blank"),
     path('charts/', ChartsView.as_view(), name="charts"),
     path('forgot-password/', ForgotPasswordView.as_view(), name="forgot-password"),
-    path('login/', LoginView.as_view(), name="login"),
-    path('register/', RegisterView.as_view(), name="register"),
+    path('login/', FlightStaffLoginView.as_view(), name="login"),
+    path('register/', FlightStaffSignUpView.as_view(), name="register"),
     path('tables/', TablesView.as_view(), name="tables"),
+    path('profile/', ProfileView.as_view(), name="profile"),
+    path('change-password/', ChangePasswordView.as_view(), name="change-password"),
+    path('logout/', LogoutView.as_view(), name="logout"),
 ]

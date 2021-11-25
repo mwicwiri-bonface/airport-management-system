@@ -26,14 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps
     'airport.apps.AirportConfig',
-    'attendant.apps.AttendantConfig',
-    'security.apps.SecurityConfig',
     'flight_staff.apps.FlightStaffConfig',
-    'maintenance.apps.MaintenanceConfig',
     'finance.apps.FinanceConfig',
     'user.apps.UserConfig',
     'passenger.apps.PassengerConfig',
-    'pilot.apps.PilotConfig',
 
     # Third party apps
     'phonenumber_field',
@@ -52,6 +48,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # custom middleware
+    'user.middleware.FinanceRequiredMiddleware',
+    'user.middleware.FlightStaffRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
