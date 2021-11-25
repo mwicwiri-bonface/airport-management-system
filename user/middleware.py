@@ -3,6 +3,10 @@ from django.urls import reverse
 
 
 class FinanceRequiredMiddleware(object):
+    """
+    Middleware that checks that the logged in user is Finance,
+    redirects to the log-in page if necessary.
+    """
     FINANCE_REQUIRED_URLS = ['finance/', "finance/change-password/", "finance/profile/", "finance/feedback/"]
 
     def __init__(self, get_response):
@@ -23,6 +27,10 @@ class FinanceRequiredMiddleware(object):
 
 
 class FlightStaffRequiredMiddleware(object):
+    """
+    Middleware that checks that the logged in user is Flight Staff,
+    redirects to the log-in page if necessary.
+    """
     FLIGHT_STAFF_REQUIRED_URLS = ['staff/', "staff/change-password/", "staff/profile/", "staff/feedback/"]
 
     def __init__(self, get_response):
