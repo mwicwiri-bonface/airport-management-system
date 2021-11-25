@@ -4,8 +4,9 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
+from airport.models import Booking, Flight
 from flight_staff.forms import FlightStaffAuthenticationForm, FlightStaffSignUpForm, FlightStaffProfileForm, \
     FlightStaffForm, FlightStaffFeedbackForm
 from flight_staff.models import FlightStaffFeedback
@@ -110,53 +111,22 @@ class FeedBackView(View):
         return redirect("flight_staff:feedback")
 
 
-class ButtonsView(View):
-    template_name = "staff/buttons.html"
+class BookingListView(ListView):
+    template_name = "staff/bookings.html"
 
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-
-class CardsView(View):
-    template_name = "staff/cards.html"
-
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+    def get_queryset(self):
+        request = self.request
+        object_list = Booking.objects.filter(flight__plane=request.user.flightstaff.flightstaffprofile.plane)
+        return object_list
 
 
-class Error404View(View):
-    template_name = "staff/404.html"
+class FlightsListView(ListView):
+    template_name = "staff/flights.html"
 
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-
-class BlankView(View):
-    template_name = "staff/blank.html"
-
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-
-class ChartsView(View):
-    template_name = "staff/charts.html"
-
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-
-class ForgotPasswordView(View):
-    template_name = "staff/forgot-password.html"
-
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
-
-
-class TablesView(View):
-    template_name = "staff/tables.html"
-
-    def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+    def get_queryset(self):
+        request = self.request
+        object_list = Flight.objects.filter(plane=request.user.flightstaff.flightstaffprofile.plane)
+        return object_list
 
 
 class LogoutView(View):
