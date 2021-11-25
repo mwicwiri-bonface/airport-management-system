@@ -42,11 +42,10 @@ class IndexView(View):
     def get(self, *args, **kwargs):
         context = {}
         request = self.request
-        if request.user.is_authenticated:
-            context['bookings_count'] = Booking.objects.filter(
-                flight__plane=request.user.flightstaff.flightstaffprofile.plane).count()
-            context['flights_count'] = Flight.objects.filter(
-                plane=request.user.flightstaff.flightstaffprofile.plane).count()
+        context['bookings_count'] = Booking.objects.filter(
+            flight__plane=request.user.flightstaff.flightstaffprofile.plane).count()
+        context['flights_count'] = Flight.objects.filter(
+            plane=request.user.flightstaff.flightstaffprofile.plane).count()
         return render(self.request, self.template_name, context)
 
 
