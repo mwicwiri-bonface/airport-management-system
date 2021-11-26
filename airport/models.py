@@ -51,7 +51,7 @@ class Plane(models.Model):
 
     @property
     def pilot(self):
-        staff_profile = self.flightstaffprofile_set.filter(user__flightstaff__user_type="pilot", user__is_archived=False,
+        staff_profile = self.flightstaffprofile_set.filter(user__user_type="pilot", user__is_archived=False,
                                                            user__is_verified=True, user__is_active=True).first()
         return staff_profile
 
