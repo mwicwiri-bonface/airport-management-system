@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import CreateView, ListView
@@ -128,6 +129,22 @@ class BookingListView(ListView):
         object_list = Booking.objects.filter(flight__plane=request.user.flightstaff.flightstaffprofile.plane)
         return object_list
 
+    def post(self, *args, **kwargs):
+        request = self.request
+        approve = request.POST.get('approve')
+        archived = request.POST.get('archive')
+        reactivate = request.POST.get('reactivate')
+        if approve is not None:
+            Booking.objects.filter(id=approve).update(is_active=True, ordered=True)
+            messages.success(request, f"Booking has been approved successfully")
+        elif archived is not None:
+            Booking.objects.filter(id=archived).update(is_archived=True, ordered=True)
+            messages.info(request, f"Booking has been archived successfully")
+        elif reactivate is not None:
+            Booking.objects.filter(id=reactivate).update(is_active=True, is_archived=False, ordered=True)
+            messages.success(request, f"Booking has been reactivated successfully")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 class FlightsListView(ListView):
     template_name = "staff/flights.html"
@@ -136,6 +153,22 @@ class FlightsListView(ListView):
         request = self.request
         object_list = Flight.objects.filter(plane=request.user.flightstaff.flightstaffprofile.plane)
         return object_list
+
+    def post(self, *args, **kwargs):
+        request = self.request
+        approve = request.POST.get('approve')
+        archived = request.POST.get('archive')
+        reactivate = request.POST.get('reactivate')
+        if approve is not None:
+            Booking.objects.filter(id=approve).update(is_active=True, ordered=True)
+            messages.success(request, f"Booking has been approved successfully")
+        elif archived is not None:
+            Booking.objects.filter(id=archived).update(is_archived=True, ordered=True)
+            messages.info(request, f"Booking has been archived successfully")
+        elif reactivate is not None:
+            Booking.objects.filter(id=reactivate).update(is_active=True, is_archived=False, ordered=True)
+            messages.success(request, f"Booking has been reactivated successfully")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class AttendantsListView(ListView):
