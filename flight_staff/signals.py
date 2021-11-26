@@ -17,6 +17,7 @@ def flight_staff_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Booking)
 def check(sender, instance, created, **kwargs):
     if created:
+        # this ensures only attendants in same plane as passenger can check passenger bookings
         attendant = FlightStaff.objects.alias(entries=Count('check')).filter(
             user_type="attendant", is_active=True, flightstaffprofile__plane=instance.flight.plane).order_by(
             'entries').first()

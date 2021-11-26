@@ -69,7 +69,11 @@ class ProfileView(View):
         form = FlightStaffForm(request.POST, instance=request.user.flightstaff)
         if form.is_valid() and p_form.is_valid():
             form.save()
-            p_form.save()
+            instance = p_form.save(commit=False)
+            # This makes sure attendant does not change plane after selecting
+            if request.user.flightstaff.flightstaffprofile.plane:
+                instance.plane = request.user.flightstaff.flightstaffprofile.plane
+            instance.save()
             messages.success(request, 'profile updated successfully')
         else:
             return render(request, self.template_name, {"p_form": p_form, "form": form})
