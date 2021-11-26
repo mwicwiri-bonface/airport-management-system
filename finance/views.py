@@ -111,7 +111,7 @@ class FeedBackView(View):
 
 
 class PaymentListView(ListView):
-    template_name = "staff/payments.html"
+    template_name = "finance/payments.html"
 
     def get_queryset(self):
         request = self.request

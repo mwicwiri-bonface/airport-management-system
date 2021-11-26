@@ -1,36 +1,40 @@
-{% extends 'staff/layouts/base.html' %}
+{% extends 'finance/layouts/base.html' %}
 {% load static %}
-{% block title %} Bookings {% endblock %}
+{% block title %} Payments {% endblock %}
 {% block content %}
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Bookings</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Payments</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Bookings</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Payments</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>flight</th>
+                                            <th>booking</th>
                                             <th>passenger</th>
-                                            <th>status</th>
+                                            <th>amount</th>
+                                            <th>mpesa</th>
+                                            <th>Status</th>
                                             <th>Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>flight</th>
+                                            <th>booking</th>
                                             <th>passenger</th>
-                                            <th>status</th>
+                                            <th>amount</th>
+                                            <th>mpesa</th>
+                                            <th>Status</th>
                                             <th>Date</th>
                                             <th>Action</th>
                                         </tr>
@@ -38,9 +42,11 @@
                                     <tbody>
                                         {% for object in object_list %}
                                             <tr>
-                                                <td>{{object.flight}}</td>
+                                                <td>{{object.booking}}</td>
                                                 <td>{{object.passenger.get_full_name}}</td>
-                                                <td>{% if object.paid %} Paid {% else %} Payment pending {% endif %}</td>
+                                                <td>{{object.amount}}</td>
+                                                <td>{{object.mpesa}}</td>
+                                                <td>{% if object.is_confirmed %} Confirmed {% else %} pending {% endif %}</td>
                                                 <td>{{object.created}}</td>
                                                 <td>
                                                     <form method="post" action=",">
