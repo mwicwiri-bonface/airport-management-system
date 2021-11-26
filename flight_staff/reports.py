@@ -16,7 +16,7 @@ def bookings_report(request):
 
     # Creating http response
     response = HttpResponse(result, content_type='application/pdf;')
-    response['Content-Disposition'] = "inline; filename=ticket-bookings.pdf "
+    response['Content-Disposition'] = "inline; filename=airport-bookings.pdf "
     return response
 
 
@@ -31,5 +31,5 @@ def flights_report(request):
 
     # Creating http response
     response = HttpResponse(result, content_type='application/pdf;')
-    response['Content-Disposition'] = "inline; filename=ticket-flights.pdf "
+    response['Content-Disposition'] = "inline; filename=airport-flights.pdf "
     return response

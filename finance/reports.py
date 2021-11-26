@@ -16,5 +16,5 @@ def payments_report(request):
 
     # Creating http response
     response = HttpResponse(result, content_type='application/pdf;')
-    response['Content-Disposition'] = "inline; filename=ticket-payments.pdf "
+    response['Content-Disposition'] = "inline; filename=airport-payments.pdf "
     return response
