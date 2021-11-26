@@ -36,7 +36,8 @@
                                             <th>seats_no</th>
                                             <th>route</th>
                                             <th>price</th>
-                                            <th>Action</th>
+                                            <th>Departure</th>
+                                            <th>Arrival</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -47,10 +48,19 @@
                                                 <td>{{object.route}}</td>
                                                 <td>{{object.price}}</td>
                                                 <td>
-                                                    <form method="post" action=",">
+                                                    <form method="post" action=".">
                                                         {% csrf_token %}
-                                                        <input type="hidden" name="booking_id" value="{{object.id}}">
-                                                        <button class="btn-primary btn-sm"> Check</button>
+                                                        {{d_form.departure}}
+                                                        <input type="hidden" name="flight_id" value="{{object.id}}">
+                                                        <button class="btn-primary btn-sm"> Departure</button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form method="post" action=".">
+                                                        {% csrf_token %}
+                                                        {{a_form.arrival}}
+                                                        <input type="hidden" name="flight_id" value="{{object.id}}">
+                                                        <button class="btn-primary btn-sm"> Arrival</button>
                                                     </form>
                                                 </td>
                                             </tr>
