@@ -1,5 +1,6 @@
 {% extends 'staff/layouts/base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block title %} Flights {% endblock %}
 {% block content %}
 
@@ -50,7 +51,7 @@
                                                 <td>
                                                     <form method="post" action=".">
                                                         {% csrf_token %}
-                                                        {{d_form.departure}}
+                                                        {% render_field d_form.departure type="datetime-local" class+="form-control" %}
                                                         <input type="hidden" name="flight_id" value="{{object.id}}">
                                                         <button class="btn-primary btn-sm"> Departure</button>
                                                     </form>
@@ -58,7 +59,7 @@
                                                 <td>
                                                     <form method="post" action=".">
                                                         {% csrf_token %}
-                                                        {{a_form.arrival}}
+                                                        {% render_field a_form.arrival type="datetime-local"  class+="form-control" %}
                                                         <input type="hidden" name="flight_id" value="{{object.id}}">
                                                         <button class="btn-primary btn-sm"> Arrival</button>
                                                     </form>

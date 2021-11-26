@@ -9,23 +9,23 @@ urlpatterns = [
     # password reset
     path('reset_password/',
          auth_views.PasswordResetView.as_view(
-             template_name="accounts/password-reset/password_reset_form.html",
-             html_email_template_name="accounts/password-reset/email_reset_template.html",
-             subject_template_name="accounts/password-reset/password_reset_subject.txt",
+             template_name="staff/forgot-password.html",
+             html_email_template_name="passenger/emails/password-reset.html",
+             subject_template_name="passenger/emails/password_reset_subject.txt",
          ),
          name="password_reset"),
     path('reset_password_done/',
-         auth_views.PasswordResetDoneView.as_view(template_name="accounts/password-reset/password_reset_done.html"),
+         auth_views.PasswordResetDoneView.as_view(template_name="staff/password-reset-done.html"),
          name="password_reset_done"),
 
     path('reset/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(
-             template_name="accounts/password-reset/password_reset_confirm.html"),
+             template_name="staff/reset-password.html"),
          name="password_reset_confirm"),
 
     path('reset_password_complete/',
          auth_views.PasswordResetCompleteView.as_view(
-             template_name="accounts/password-reset/password_reset_complete.html"),
+             template_name="staff/password-reset-complete.html"),
          name="password_reset_complete"),
 
     path('admin/', admin.site.urls),
