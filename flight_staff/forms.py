@@ -22,7 +22,7 @@ class FlightStaffSignUpForm(UserCreationForm):
 class FlightStaffProfileForm(ModelForm):
     class Meta:
         model = FlightStaffProfile
-        fields = ['image', 'gender', 'phone_number', 'country']
+        fields = ['image', 'gender', 'phone_number', 'country', 'plane']
 
 
 class FlightStaffForm(ModelForm):
