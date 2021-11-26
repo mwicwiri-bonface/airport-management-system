@@ -7,7 +7,8 @@ class FinanceRequiredMiddleware(object):
     Middleware that checks that the logged in user is Finance,
     redirects to the log-in page if necessary.
     """
-    FINANCE_REQUIRED_URLS = ['finance/', "finance/change-password/", "finance/profile/", "finance/feedback/"]
+    FINANCE_REQUIRED_URLS = ['finance/', "finance/change-password/", "finance/profile/", "finance/feedback/",
+                             "finance/payments/", "finance/payments-pdf/"]
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -32,7 +33,8 @@ class FlightStaffRequiredMiddleware(object):
     redirects to the log-in page if necessary.
     """
     FLIGHT_STAFF_REQUIRED_URLS = ['staff/', "staff/change-password/", "staff/profile/", "staff/feedback/",
-                                  "staff/bookings/", "staff/flights/", "staff/attendants/"]
+                                  "staff/bookings/", "staff/flights/", "staff/attendants/", "staff/flights-pdf/",
+                                  "staff/bookings-pdf/"]
 
     def __init__(self, get_response):
         self.get_response = get_response
