@@ -19,29 +19,29 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>flight</th>
-                                            <th>passenger</th>
-                                            <th>status</th>
-                                            <th>Date</th>
+                                            <th>plane</th>
+                                            <th>seats_no</th>
+                                            <th>route</th>
+                                            <th>price</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>flight</th>
-                                            <th>passenger</th>
-                                            <th>status</th>
-                                            <th>Date</th>
+                                            <th>plane</th>
+                                            <th>seats_no</th>
+                                            <th>route</th>
+                                            <th>price</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         {% for object in object_list %}
                                             <tr>
-                                                <td>{{object.flight}}</td>
-                                                <td>{{object.passenger.get_full_name}}</td>
-                                                <td>{% if object.paid %} Paid {% else %} Payment pending {% endif %}</td>
-                                                <td>{{object.created}}</td>
+                                                <td>{{object.plane}}</td>
+                                                <td>{{object.seats_no}}</td>
+                                                <td>{{object.route}}</td>
+                                                <td>{{object.price}}</td>
                                                 <td>
                                                     <form method="post" action=",">
                                                         {% csrf_token %}
