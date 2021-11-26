@@ -14,6 +14,6 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
-# Assumptions 
-1. every passenger who makes a booking will pay
+### Assumptions 
+1. Every passenger who makes a booking will pay
 
