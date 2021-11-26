@@ -43,11 +43,23 @@
                                                 <td>{% if object.paid %} Paid {% else %} Payment pending {% endif %}</td>
                                                 <td>{{object.created}}</td>
                                                 <td>
-                                                    <form method="post" action=",">
-                                                        {% csrf_token %}
-                                                        <input type="hidden" name="booking_id" value="{{object.id}}">
-                                                        <button class="btn-primary btn-sm"> Check</button>
-                                                    </form>
+                                                    {% if request.user.flightstaff.user_type == "attendant" %}
+                                                        {% if object.check.status %}
+                                                            Checked
+                                                        {% else %}
+                                                            <form method="post" action=".">
+                                                                {% csrf_token %}
+                                                                <input type="hidden" name="check" value="{{object.id}}">
+                                                                <button class="btn-primary btn-sm"> Check</button>
+                                                            </form>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        {% if object.check.status %}
+                                                            Checked
+                                                        {% else %}
+                                                            Pending
+                                                        {% endif %}
+                                                    {% endif %}
                                                 </td>
                                             </tr>
                                         {% endfor %}

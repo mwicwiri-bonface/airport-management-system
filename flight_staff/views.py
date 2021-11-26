@@ -3,14 +3,14 @@ from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.generic import CreateView, ListView
 
 from airport.models import Booking, Flight
 from flight_staff.forms import FlightStaffAuthenticationForm, FlightStaffSignUpForm, FlightStaffProfileForm, \
     FlightStaffForm, FlightStaffFeedbackForm
-from flight_staff.models import FlightStaffFeedback, FlightStaff
+from flight_staff.models import FlightStaffFeedback, FlightStaff, Check
 from passenger.models import Passenger
 
 
@@ -131,18 +131,13 @@ class BookingListView(ListView):
 
     def post(self, *args, **kwargs):
         request = self.request
-        approve = request.POST.get('approve')
-        archived = request.POST.get('archive')
-        reactivate = request.POST.get('reactivate')
-        if approve is not None:
-            Booking.objects.filter(id=approve).update(is_active=True, ordered=True)
-            messages.success(request, f"Booking has been approved successfully")
-        elif archived is not None:
-            Booking.objects.filter(id=archived).update(is_archived=True, ordered=True)
-            messages.info(request, f"Booking has been archived successfully")
-        elif reactivate is not None:
-            Booking.objects.filter(id=reactivate).update(is_active=True, is_archived=False, ordered=True)
-            messages.success(request, f"Booking has been reactivated successfully")
+        check = request.POST.get('check')
+        if check is not None:
+            instance = get_object_or_404(Booking, id=check)
+            instance = Check.objects.get(booking=instance)
+            instance.status = True
+            instance.save()
+            messages.success(request, f"Booking has been Checked successfully")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 

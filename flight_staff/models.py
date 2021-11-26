@@ -38,13 +38,7 @@ class FlightStaffFeedback(Feedback):
 class Check(models.Model):
     status = models.BooleanField(default=False)
     attendant = models.ForeignKey(FlightStaff, on_delete=models.CASCADE, null=True)
-    ticket = models.ForeignKey(Booking, on_delete=models.CASCADE, null=True)
+    ticket = models.OneToOneField(Booking, on_delete=models.CASCADE, null=True)
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
 
-
-@receiver(post_save, sender=FlightStaff)
-def flight_staff_profile(sender, instance, created, **kwargs):
-    if created:
-        FlightStaffProfile.objects.create(user=instance)
-        instance.flightstaffprofile.save()
