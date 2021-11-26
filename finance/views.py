@@ -4,11 +4,11 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 from finance.forms import FinanceAuthenticationForm, FinanceFeedbackForm, FinanceProfileForm, FinanceForm, \
     FinanceSignUpForm
-from finance.models import FinanceFeedback
+from finance.models import FinanceFeedback, Payment
 
 
 class FinanceLoginView(LoginView):
@@ -108,6 +108,15 @@ class FeedBackView(View):
         else:
             return render(request, self.template_name, {"form": form})
         return redirect("finance:feedback")
+
+
+class PaymentListView(ListView):
+    template_name = "staff/payments.html"
+
+    def get_queryset(self):
+        request = self.request
+        object_list = Payment.objects.filter(finance=request.user.finance)
+        return object_list
 
 
 class LogoutView(View):

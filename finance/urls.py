@@ -1,9 +1,10 @@
 from django.urls import path
 
-from finance.views import FinanceLoginView, LogoutView,  FeedBackView, ChangePasswordView, ProfileView, \
-    FinanceSignUpView, HomeView
+from finance.views import FinanceLoginView, LogoutView, FeedBackView, ChangePasswordView, ProfileView, \
+    FinanceSignUpView, HomeView, PaymentListView
 
 urlpatterns = [
+    path('payments/', PaymentListView.as_view(), name="payments"),
     path('login/', FinanceLoginView.as_view(), name="login"),
     path('register/', FinanceSignUpView.as_view(), name="register"),
     path('profile/', ProfileView.as_view(), name="profile"),
