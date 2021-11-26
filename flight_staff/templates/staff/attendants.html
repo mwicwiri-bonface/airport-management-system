@@ -1,0 +1,72 @@
+{% extends 'staff/layouts/base.html' %}
+{% load static %}
+{% block title %} Attendants {% endblock %}
+{% block content %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Attendants</h1>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Attendants</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>email</th>
+                                            <th>username</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>email</th>
+                                            <th>username</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for object in object_list %}
+                                            <tr>
+                                                <td>{{object.get_full_name}}</td>
+                                                <td>{{object.email}}</td>
+                                                <td>{{object.username}}</td>
+                                                <td>{{object.created}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+{% endblock %}
+{% block scripts %}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'staff/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'staff/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'staff/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'staff/js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'staff/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'staff/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'staff/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

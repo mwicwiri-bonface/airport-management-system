@@ -31,7 +31,8 @@ class FlightStaffRequiredMiddleware(object):
     Middleware that checks that the logged in user is Flight Staff,
     redirects to the log-in page if necessary.
     """
-    FLIGHT_STAFF_REQUIRED_URLS = ['staff/', "staff/change-password/", "staff/profile/", "staff/feedback/"]
+    FLIGHT_STAFF_REQUIRED_URLS = ['staff/', "staff/change-password/", "staff/profile/", "staff/feedback/",
+                                  "staff/bookings/", "staff/flights/", "staff/attendants/"]
 
     def __init__(self, get_response):
         self.get_response = get_response

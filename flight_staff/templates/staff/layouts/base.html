@@ -56,26 +56,7 @@
     </a>
 
     {% include 'staff/includes/logout-modal.html' %}
-
-    {% block scripts %}
-        <!-- Bootstrap core JavaScript-->
-        <script src="{% static 'staff/vendor/jquery/jquery.min.js' %}"></script>
-        <script src="{% static 'staff/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="{% static 'staff/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="{% static 'staff/js/sb-admin-2.min.js' %}"></script>
-
-        <!-- Page level plugins -->
-        <script src="{% static 'staff/vendor/chart.js/Chart.min.js' %}"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="{% static 'staff/js/demo/chart-area-demo.js' %}"></script>
-        <script src="{% static 'staff/js/demo/chart-pie-demo.js' %}"></script>
-    {% endblock %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% for message in messages %}
@@ -99,6 +80,26 @@
 			 }
 		</script>
     {% endfor %}
+
+
+    {% block scripts %}
+        <!-- Bootstrap core JavaScript-->
+        <script src="{% static 'staff/vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'staff/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="{% static 'staff/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="{% static 'staff/js/sb-admin-2.min.js' %}"></script>
+
+        <!-- Page level plugins -->
+        <script src="{% static 'staff/vendor/chart.js/Chart.min.js' %}"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="{% static 'staff/js/demo/chart-area-demo.js' %}"></script>
+        <script src="{% static 'staff/js/demo/chart-pie-demo.js' %}"></script>
+    {% endblock %}
 
 </body>
 

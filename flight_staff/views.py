@@ -9,7 +9,8 @@ from django.views.generic import CreateView, ListView
 from airport.models import Booking, Flight
 from flight_staff.forms import FlightStaffAuthenticationForm, FlightStaffSignUpForm, FlightStaffProfileForm, \
     FlightStaffForm, FlightStaffFeedbackForm
-from flight_staff.models import FlightStaffFeedback
+from flight_staff.models import FlightStaffFeedback, FlightStaff
+from passenger.models import Passenger
 
 
 class FlightStaffLoginView(LoginView):
@@ -46,6 +47,8 @@ class IndexView(View):
             flight__plane=request.user.flightstaff.flightstaffprofile.plane).count()
         context['flights_count'] = Flight.objects.filter(
             plane=request.user.flightstaff.flightstaffprofile.plane).count()
+        context['attendants_count'] = FlightStaff.objects.filter(
+            user_type="attendant", flightstaffprofile__plane=request.user.flightstaff.flightstaffprofile.plane).count()
         return render(self.request, self.template_name, context)
 
 
@@ -132,6 +135,16 @@ class FlightsListView(ListView):
     def get_queryset(self):
         request = self.request
         object_list = Flight.objects.filter(plane=request.user.flightstaff.flightstaffprofile.plane)
+        return object_list
+
+
+class AttendantsListView(ListView):
+    template_name = "staff/attendants.html"
+
+    def get_queryset(self):
+        request = self.request
+        object_list = FlightStaff.objects.filter(
+            user_type="attendant", flightstaffprofile__plane=request.user.flightstaff.flightstaffprofile.plane)
         return object_list
 
 

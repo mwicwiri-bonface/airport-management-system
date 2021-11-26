@@ -37,8 +37,7 @@
             <div id="Bookings" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Bookings:</h6>
-                    <a class="collapse-item" href="#">Pending</a>
-                    <a class="collapse-item" href="#">Bookings</a>
+                    <a class="collapse-item" href="{% url 'flight_staff:bookings' %}">Bookings</a>
                 </div>
             </div>
         </li>
@@ -92,8 +91,8 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="#">Login</a>
+                        <h6 class="collapse-header">Attendants:</h6>
+                        <a class="collapse-item" href="{% url 'flight_staff:attendants' %}">attendants</a>
                     </div>
                 </div>
             </li>
