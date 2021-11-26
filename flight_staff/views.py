@@ -146,11 +146,6 @@ class BookingListView(ListView):
 
 class FlightsListView(View):
     template_name = "staff/flights.html"
-    #
-    # def get_queryset(self):
-    #     request = self.request
-    #     object_list = Flight.objects.filter(plane=request.user.flightstaff.flightstaffprofile.plane)
-    #     return object_list
 
     def get(self, *args, **kwargs):
         request = self.request
