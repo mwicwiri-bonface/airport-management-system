@@ -2,6 +2,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.forms import ModelForm, forms
 
+from airport.models import Flight
 from .models import FlightStaff, FlightStaffProfile, FlightStaffFeedback
 
 
@@ -45,3 +46,15 @@ class FlightStaffAuthenticationForm(AuthenticationForm):
             logout(self.request)
             raise forms.ValidationError("Sorry invalid credentials.",
                                         code='invalid login')
+
+
+class DepartureFrom(ModelForm):
+    class Meta:
+        model = Flight
+        fields = ['departure']
+
+
+class ArrivalFrom(ModelForm):
+    class Meta:
+        model = Flight
+        fields = ['arrival']
