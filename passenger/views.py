@@ -203,11 +203,14 @@ def booking_api(request):
         flight_id = request.POST.get('flight_id')
         if Flight.objects.filter(id=flight_id).exists():
             flight = Flight.objects.get(id=flight_id)
-            if Booking.objects.filter(flight=flight, passenger=request.user.passenger).exists():
-                messages.info(request, "Booking has already been made")
+            if Booking.objects.filter(flight=flight).count() <= flight.seats_no:
+                if Booking.objects.filter(flight=flight, passenger=request.user.passenger).exists():
+                    messages.info(request, "Booking has already been made")
+                else:
+                    Booking.objects.create(flight=flight, passenger=request.user.passenger, code=generate_key(12, 12))
+                    messages.success(request, "Flight has been booked successfully")
             else:
-                Booking.objects.create(flight=flight, passenger=request.user.passenger, code=generate_key(12, 12))
-                messages.success(request, "Flight has been booked successfully")
+                messages.info(request, "Sorry all seats are booked")
             return redirect('passenger:booking')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
