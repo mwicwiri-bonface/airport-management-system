@@ -227,6 +227,8 @@ def booking(request):
 @passenger_required
 def cancel_booking(request, slug):
     booking_obj = get_object_or_404(Booking, slug=slug)
+    check_booking = booking_obj.checkbooking
+    check_booking.delete()
     booking_obj.delete()
     messages.info(request, "Booking has been cancelled.")
     return redirect(reverse("passenger:index"))
