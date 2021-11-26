@@ -50,6 +50,8 @@
 						{% if request.user.is_authenticated and request.user.is_passenger %}
 							<li class="sign-up"><a class="btn-signup red-btn" href="{% url 'passenger:flights' %}"><span class="ti-briefcase"></span>Booking Flight</a></li>
 						{% endif %}
+						<li class="br-right"><a href="{% url 'finance:index' %}"><i class="login-icon ti-user"></i>Finance</a></li>
+						<li class="br-right"><a href="{% url 'flight_staff:index' %}"><i class="login-icon ti-user"></i>Flight Staff</a></li>
 					</ul>
 
 				</div>
