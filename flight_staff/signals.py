@@ -20,5 +20,6 @@ def check(sender, instance, created, **kwargs):
         attendant = FlightStaff.objects.alias(entries=Count('check')).filter(
             user_type="attendant", is_active=True, flightstaffprofile__plane=instance.flight.plane).order_by(
             'entries').first()
-        Check.objects.create(ticket=instance, attendant=attendant)
-        instance.check.save()
+        if attendant:
+            Check.objects.create(ticket=instance, attendant=attendant)
+            instance.check.save()
