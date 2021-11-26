@@ -9,9 +9,8 @@ from django.views.generic import CreateView, ListView
 
 from airport.models import Booking, Flight
 from flight_staff.forms import FlightStaffAuthenticationForm, FlightStaffSignUpForm, FlightStaffProfileForm, \
-    FlightStaffForm, FlightStaffFeedbackForm
+    FlightStaffForm, FlightStaffFeedbackForm, DepartureForm, ArrivalForm
 from flight_staff.models import FlightStaffFeedback, FlightStaff, CheckBooking
-from passenger.models import Passenger
 
 
 class FlightStaffLoginView(LoginView):
@@ -153,20 +152,25 @@ class FlightsListView(ListView):
         object_list = Flight.objects.filter(plane=request.user.flightstaff.flightstaffprofile.plane)
         return object_list
 
+    def get(self, *args, **kwargs):
+        context = {'d_form': DepartureForm(), 'a_form': ArrivalForm()}
+        return render(self.request, self.template_name, context)
+
     def post(self, *args, **kwargs):
         request = self.request
-        approve = request.POST.get('approve')
-        archived = request.POST.get('archive')
-        reactivate = request.POST.get('reactivate')
-        if approve is not None:
-            Booking.objects.filter(id=approve).update(is_active=True, ordered=True)
-            messages.success(request, f"Booking has been approved successfully")
-        elif archived is not None:
-            Booking.objects.filter(id=archived).update(is_archived=True, ordered=True)
-            messages.info(request, f"Booking has been archived successfully")
-        elif reactivate is not None:
-            Booking.objects.filter(id=reactivate).update(is_active=True, is_archived=False, ordered=True)
-            messages.success(request, f"Booking has been reactivated successfully")
+        flight_id = request.POST.get('flight_id')
+        departure = DepartureForm(request.POST)
+        arrival = ArrivalForm(request.POST)
+        if departure.is_valid():
+            instance = get_object_or_404(Flight, id=flight_id)
+            instance.departure = departure.departure
+            instance.save()
+            messages.success(request, f"Flight Departure has been set successfully")
+        elif arrival.is_valid():
+            instance = get_object_or_404(Flight, id=flight_id)
+            instance.arrival = arrival.arrival
+            instance.save()
+            messages.success(request, f"Flight arrival has been set successfully")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 

@@ -48,13 +48,13 @@ class FlightStaffAuthenticationForm(AuthenticationForm):
                                         code='invalid login')
 
 
-class DepartureFrom(ModelForm):
+class DepartureForm(ModelForm):
     class Meta:
         model = Flight
         fields = ['departure']
 
 
-class ArrivalFrom(ModelForm):
+class ArrivalForm(ModelForm):
     class Meta:
         model = Flight
         fields = ['arrival']
