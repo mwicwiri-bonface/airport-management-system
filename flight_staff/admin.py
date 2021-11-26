@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
 from django.utils.translation import ngettext
 
-from .models import FlightStaff, FlightStaffProfile, FlightStaffFeedback, Check
+from .models import FlightStaff, FlightStaffProfile, FlightStaffFeedback, CheckBooking
 
 
 class FlightStaffAdmin(admin.ModelAdmin):
@@ -95,6 +95,6 @@ class FlightStaffFeedbackAdmin(admin.ModelAdmin):
 admin.site.register(FlightStaff, FlightStaffAdmin)
 admin.site.register(FlightStaffProfile, FlightStaffProfileAdmin)
 admin.site.register(FlightStaffFeedback, FlightStaffFeedbackAdmin)
-admin.site.register(Check)
+admin.site.register(CheckBooking)
 
 

@@ -10,7 +10,7 @@ from django.views.generic import CreateView, ListView
 from airport.models import Booking, Flight
 from flight_staff.forms import FlightStaffAuthenticationForm, FlightStaffSignUpForm, FlightStaffProfileForm, \
     FlightStaffForm, FlightStaffFeedbackForm
-from flight_staff.models import FlightStaffFeedback, FlightStaff, Check
+from flight_staff.models import FlightStaffFeedback, FlightStaff, CheckBooking
 from passenger.models import Passenger
 
 
@@ -134,7 +134,7 @@ class BookingListView(ListView):
         check = request.POST.get('check')
         if check is not None:
             instance = get_object_or_404(Booking, id=check)
-            instance = Check.objects.get(booking=instance)
+            instance = CheckBooking.objects.get(booking=instance)
             instance.status = True
             instance.save()
             messages.success(request, f"Booking has been Checked successfully")

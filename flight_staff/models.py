@@ -35,7 +35,7 @@ class FlightStaffFeedback(Feedback):
         verbose_name_plural = 'Flight Staff Feedback'
 
 
-class Check(models.Model):
+class CheckBooking(models.Model):
     status = models.BooleanField(default=False)
     attendant = models.ForeignKey(FlightStaff, on_delete=models.CASCADE, null=True)
     ticket = models.OneToOneField(Booking, on_delete=models.CASCADE, null=True)

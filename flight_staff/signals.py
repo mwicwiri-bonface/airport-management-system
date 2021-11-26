@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 
 from airport.models import Booking
-from flight_staff.models import FlightStaff, FlightStaffProfile, Check
+from flight_staff.models import FlightStaff, FlightStaffProfile, CheckBooking
 
 
 @receiver(post_save, sender=FlightStaff)
@@ -21,5 +21,5 @@ def check(sender, instance, created, **kwargs):
             user_type="attendant", is_active=True, flightstaffprofile__plane=instance.flight.plane).order_by(
             'entries').first()
         if attendant:
-            Check.objects.create(ticket=instance, attendant=attendant)
-            instance.check.save()
+            CheckBooking.objects.create(ticket=instance, attendant=attendant)
+            instance.checkbooking.save()
