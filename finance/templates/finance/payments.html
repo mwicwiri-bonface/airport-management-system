@@ -49,11 +49,16 @@
                                                 <td>{% if object.is_confirmed %} Confirmed {% else %} pending {% endif %}</td>
                                                 <td>{{object.created}}</td>
                                                 <td>
-                                                    <form method="post" action=",">
-                                                        {% csrf_token %}
-                                                        <input type="hidden" name="booking_id" value="{{object.id}}">
-                                                        <button class="btn-primary btn-sm"> Check</button>
-                                                    </form>
+                                                    {% if object.is_confirmed %}
+                                                            Confirmed
+                                                    {% else %}
+                                                        <form method="post">
+                                                            {% csrf_token %}
+                                                            <button class="btn btn-success btn-sm" name="confirm" value="{{object.id}}">
+                                                                <i class="zmdi zmdi-badge-check"></i>
+                                                            </button>
+                                                        </form>
+                                                    {% endif %}
                                                 </td>
                                             </tr>
                                         {% endfor %}

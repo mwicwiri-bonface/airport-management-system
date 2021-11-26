@@ -3,7 +3,7 @@ from django.contrib.auth import login, update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.generic import CreateView, ListView
 
@@ -121,18 +121,15 @@ class PaymentListView(ListView):
 
     def post(self, *args, **kwargs):
         request = self.request
-        approve = request.POST.get('approve')
-        archived = request.POST.get('archive')
-        reactivate = request.POST.get('reactivate')
-        if approve is not None:
-            Payment.objects.filter(id=approve).update(is_active=True, ordered=True)
-            messages.success(request, f"Booking has been approved successfully")
-        elif archived is not None:
-            Payment.objects.filter(id=archived).update(is_archived=True, ordered=True)
-            messages.info(request, f"Booking has been archived successfully")
-        elif reactivate is not None:
-            Payment.objects.filter(id=reactivate).update(is_active=True, is_archived=False, ordered=True)
-            messages.success(request, f"Booking has been reactivated successfully")
+        confirm = request.POST.get('confirm')
+        if confirm is not None:
+            instance = get_object_or_404(Payment, id=confirm)
+            instance.is_confirmed = True
+            instance.save()
+            booking = instance.booking
+            booking.paid = True
+            booking.save()
+            messages.success(request, f"Payment has been confirmed successfully")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
