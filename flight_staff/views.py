@@ -144,16 +144,18 @@ class BookingListView(ListView):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-class FlightsListView(ListView):
+class FlightsListView(View):
     template_name = "staff/flights.html"
-
-    def get_queryset(self):
-        request = self.request
-        object_list = Flight.objects.filter(plane=request.user.flightstaff.flightstaffprofile.plane)
-        return object_list
+    #
+    # def get_queryset(self):
+    #     request = self.request
+    #     object_list = Flight.objects.filter(plane=request.user.flightstaff.flightstaffprofile.plane)
+    #     return object_list
 
     def get(self, *args, **kwargs):
-        context = {'d_form': DepartureForm(), 'a_form': ArrivalForm()}
+        request = self.request
+        object_list = Flight.objects.filter(plane=request.user.flightstaff.flightstaffprofile.plane)
+        context = {'d_form': DepartureForm(), 'a_form': ArrivalForm(), 'object_list': object_list}
         return render(self.request, self.template_name, context)
 
     def post(self, *args, **kwargs):
