@@ -51,8 +51,7 @@ class Plane(models.Model):
 
     @property
     def pilot(self):
-        staff_profile = self.flightstaffprofile_set.filter(user__user_type="pilot", user__is_archived=False,
-                                                           user__is_verified=True, user__is_active=True).first()
+        staff_profile = self.flightstaffprofile_set.filter(user__user_type="pilot", user__is_active=True).first()
         return staff_profile
 
 
@@ -77,4 +76,3 @@ class Booking(models.Model):
     paid = models.BooleanField(default=False)
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
-
