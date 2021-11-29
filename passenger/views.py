@@ -204,7 +204,7 @@ def booking_api(request):
         if Flight.objects.filter(id=flight_id).exists():
             flight = Flight.objects.get(id=flight_id)
             # making sure only available seats are booked
-            if Booking.objects.filter(flight=flight).count() <= flight.seats_no:
+            if Booking.objects.filter(flight=flight).count() < flight.seats_no:
                 if Booking.objects.filter(flight=flight, passenger=request.user.passenger).exists():
                     messages.info(request, "Booking has already been made")
                 else:

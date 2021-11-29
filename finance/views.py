@@ -40,7 +40,10 @@ class HomeView(View):
     template_name = "finance/index.html"
 
     def get(self, *args, **kwargs):
-        return render(self.request, self.template_name)
+        request = self.request
+        context = {"pending_payments_count": Payment.objects.filter(finance=request.user.finance, is_confirmed=False),
+                   "confirmed_payments_count": Payment.objects.filter(finance=request.user.finance, is_confirmed=True)}
+        return render(self.request, self.template_name, context)
 
 
 class ProfileView(View):
