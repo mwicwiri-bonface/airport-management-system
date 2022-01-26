@@ -17,7 +17,7 @@ django-widget-tweaks==1.4.8
 fonttools==4.27.1
 html5lib==1.1
 phonenumbers==8.12.31
-Pillow==8.3.2
+Pillow==9.0.0
 py-moneyed==1.2
 pycparser==2.20
 pydyf==0.1.1
