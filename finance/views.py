@@ -40,8 +40,8 @@ class HomeView(View):
     template_name = "finance/index.html"
 
     def get(self, *args, **kwargs):
-        context = {"pending_payments_count": Payment.objects.filter(is_confirmed=False),
-                   "confirmed_payments_count": Payment.objects.filter(is_confirmed=True)}
+        context = {"pending_payments_count": Payment.objects.filter(is_confirmed=False).count(),
+                   "confirmed_payments_count": Payment.objects.filter(is_confirmed=True).count()}
         return render(self.request, self.template_name, context)
 
 
