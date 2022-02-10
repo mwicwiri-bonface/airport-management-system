@@ -40,9 +40,8 @@ class HomeView(View):
     template_name = "finance/index.html"
 
     def get(self, *args, **kwargs):
-        request = self.request
-        context = {"pending_payments_count": Payment.objects.filter(finance=request.user.finance, is_confirmed=False),
-                   "confirmed_payments_count": Payment.objects.filter(finance=request.user.finance, is_confirmed=True)}
+        context = {"pending_payments_count": Payment.objects.filter(is_confirmed=False),
+                   "confirmed_payments_count": Payment.objects.filter(is_confirmed=True)}
         return render(self.request, self.template_name, context)
 
 
@@ -115,12 +114,8 @@ class FeedBackView(View):
 
 
 class PaymentListView(ListView):
+    model = Payment
     template_name = "finance/payments.html"
-
-    def get_queryset(self):
-        request = self.request
-        object_list = Payment.objects.filter(finance=request.user.finance)
-        return object_list
 
     def post(self, *args, **kwargs):
         request = self.request
