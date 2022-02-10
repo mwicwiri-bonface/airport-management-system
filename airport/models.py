@@ -76,3 +76,6 @@ class Booking(models.Model):
     paid = models.BooleanField(default=False)
     created = models.DateTimeField(_('Created'), auto_now_add=True, null=True)
     updated = models.DateTimeField(_('Updated'), auto_now=True, null=True)
+
+    def __str__(self):
+        return f"{self.code}"
