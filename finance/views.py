@@ -117,33 +117,29 @@ class PaymentListView(ListView):
     model = Payment
     template_name = "finance/payments.html"
 
-    class PaymentListView(ListView):
-        model = Payment
-        template_name = "finance/payments.html"
-
-        def post(self, *args, **kwargs):
-            request = self.request
-            confirm = request.POST.get('confirm')
-            undo = request.POST.get('undo')
-            if confirm is not None:
-                instance = get_object_or_404(Payment, id=confirm)
-                instance.is_confirmed = True
-                instance.finance = request.user.finance
-                instance.save()
-                booking = instance.booking
-                booking.paid = True
-                booking.save()
-                messages.success(request, f"Payment has been confirmed successfully")
-            elif undo is not None:
-                instance = get_object_or_404(Payment, id=undo)
-                instance.is_confirmed = False
-                instance.finance = request.user.finance
-                instance.save()
-                booking = instance.booking
-                booking.paid = False
-                booking.save()
-                messages.info(request, f"Payment has been Confirmation has been undone successfully")
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    def post(self, *args, **kwargs):
+        request = self.request
+        confirm = request.POST.get('confirm')
+        undo = request.POST.get('undo')
+        if confirm is not None:
+            instance = get_object_or_404(Payment, id=confirm)
+            instance.is_confirmed = True
+            instance.finance = request.user.finance
+            instance.save()
+            booking = instance.booking
+            booking.paid = True
+            booking.save()
+            messages.success(request, f"Payment has been confirmed successfully")
+        elif undo is not None:
+            instance = get_object_or_404(Payment, id=undo)
+            instance.is_confirmed = False
+            instance.finance = request.user.finance
+            instance.save()
+            booking = instance.booking
+            booking.paid = False
+            booking.save()
+            messages.info(request, f"Payment has been Confirmation has been undone successfully")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class LogoutView(View):
